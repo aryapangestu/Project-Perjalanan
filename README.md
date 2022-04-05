@@ -6,12 +6,12 @@ Perjalanan adalah sebuah perangkat lunak yang membantu dalam hal transportasi ya
 1. Clone the github repo:
 
     ```bash
-    https://github.com/aryapangestu/Project_WTB-Travel.git
+    https://github.com/aryapangestu/Project-Perjalanan.git
     ```
 2. Go the project directory:
 
     ```bash
-    cd AdminPanel_WTB-Travel
+    cd perjalanan-app
     ```
 3. Install the project dependencies:
     ```bash
