@@ -13,13 +13,16 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('reviews', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->string('password');
-            $table->integer('role',)->default('1');
+            $table->unsignedBigInteger('driver_id');
+            $table->unsignedBigInteger('passenger_id');
+            $table->integer('rate');
+            $table->string('review', 255);
             $table->timestamps();
+
+            $table->foreign('driver_id')->references('user_id')->on('drivers');
+            $table->foreign('passenger_id')->references('user_id')->on('passengers');
         });
     }
 
@@ -30,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('reviews');
     }
 };
