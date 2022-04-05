@@ -26,7 +26,7 @@ Perjalanan adalah sebuah perangkat lunak yang membantu dalam hal transportasi ya
     ```bash
     copy .env.example .env
     ```
-5. Run XAMPP Apache & MySQL and create an empty Database named wtb_travel
+5. Run XAMPP Apache & MySQL and create an empty Database named perjalanan-app
    </br>Create tables into database:
     ```bash
     php artisan migrate:fresh
