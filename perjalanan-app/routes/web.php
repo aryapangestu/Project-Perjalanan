@@ -30,7 +30,7 @@ Route::get('/edit-tambah-detail-pengemudi', function () {
     ]);
 });
 
-//AdminPanel
+// AdminPanel
 Route::get('/', [DashboardController::class, 'index']);
 Route::get('/dashboard', [DashboardController::class, 'index']);
 
@@ -42,3 +42,8 @@ Route::get('/list-penumpang', [DashboardPenumpangController::class, 'index']);
 
 Route::get('/register', [RegisterController::class, 'index']);
 Route::post('/register', [RegisterController::class, 'store']);
+
+
+// Driver
+
+// Passenger
