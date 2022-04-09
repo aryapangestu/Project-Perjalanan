@@ -21,6 +21,7 @@
     <link href="assets/css/style.css" rel="stylesheet" />
 </head>
 
+
 <body>
     <main>
         <div class="container">
@@ -49,25 +50,39 @@
                                         </p>
                                     </div>
 
-                                    <form class="row g-3 needs-validation" novalidate>
+                                    @if (session()->has('loginError'))
+                                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                            {{ session('loginError') }} <button type="button" class="btn-close"
+                                                data-bs-dismiss="alert" aria-label="Close"></button>
+                                        </div>
+                                    @endif
+
+                                    <form class="row g-3 needs-validation" action="/login" method="post" novalidate>
+                                        @csrf
                                         <div class="col-12">
                                             <label for="yourUsername" class="form-label">Email</label>
                                             <div class="input-group has-validation">
-                                                <input type="text" name="username" class="form-control"
-                                                    id="yourUsername" required />
-                                                <div class="invalid-feedback">
-                                                    Please enter your Email!
-                                                </div>
+                                                <input type="text" name="email"
+                                                    class="form-control @error('email') is-invalid @enderror"
+                                                    id="yourEmail" required />
+                                                @error('email')
+                                                    <div class="invalid-feedback">
+                                                        Please enter your Email!
+                                                    </div>
+                                                @enderror
                                             </div>
                                         </div>
 
                                         <div class="col-12">
                                             <label for="yourPassword" class="form-label">Password</label>
-                                            <input type="password" name="password" class="form-control"
+                                            <input type="password" name="password"
+                                                class="form-control @error('password') is-invalid @enderror"
                                                 id="yourPassword" required />
-                                            <div class="invalid-feedback">
-                                                Please enter your password!
-                                            </div>
+                                            @error('password')
+                                                <div class="invalid-feedback">
+                                                    Please enter your password!
+                                                </div>
+                                            @enderror
                                         </div>
 
                                         <div class="col-12">

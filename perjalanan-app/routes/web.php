@@ -31,16 +31,19 @@ Route::get('/edit-tambah-detail-pengemudi', function () {
 });
 
 // AdminPanel
-Route::get('/', [DashboardController::class, 'index']);
-Route::get('/dashboard', [DashboardController::class, 'index']);
+Route::get('/', [DashboardController::class, 'index'])->middleware('auth');
+Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('auth');
 
-Route::get('/login', [LoginController::class, 'index']);
+Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
+Route::post('/login', [LoginController::class, 'authenticate']);
 
-Route::get('/list-pengemudi', [DashboardPengemudiController::class, 'index']);
+Route::post('/logout', [LoginController::class, 'logout']);
 
-Route::get('/list-penumpang', [DashboardPenumpangController::class, 'index']);
+Route::get('/list-pengemudi', [DashboardPengemudiController::class, 'index'])->middleware('auth');
 
-Route::get('/register', [RegisterController::class, 'index']);
+Route::get('/list-penumpang', [DashboardPenumpangController::class, 'index'])->middleware('auth');
+
+Route::get('/register', [RegisterController::class, 'index'])->middleware('guest');
 Route::post('/register', [RegisterController::class, 'store']);
 
 
