@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Data Penumpang - Perjalanan Admin Panel</title>
+  <title>Edit Detail Penumpang - Perjalanan Admin Panel</title>
 
   <!-- Google Fonts -->
   <link href="https://fonts.gstatic.com" rel="preconnect">
@@ -25,7 +25,7 @@
 <header id="header" class="header fixed-top d-flex align-items-center">
 
   <div class="d-flex align-items-center justify-content-between">
-    <a href="index-driver.html" class="logo d-flex align-items-center">
+    <a href="index.html" class="logo d-flex align-items-center">
       <img src="assets/img/logo.png" alt="">
       <span class="d-none d-lg-block">Perjalanan</span>
     </a>
@@ -39,7 +39,7 @@
 
         <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
           <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
-          <span class="d-none d-md-block dropdown-toggle ps-2">Driver</span>
+          <span class="d-none d-md-block dropdown-toggle ps-2">Passenger</span>
         </a><!-- End Profile Iamge Icon -->
 
         <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
@@ -61,32 +61,38 @@
 
 </header><!-- End Header -->
 
-<!-- ======= Sidebar ======= -->
-<aside id="sidebar" class="sidebar">
+   <!-- ======= Sidebar ======= -->
+   <aside id="sidebar" class="sidebar">
 
     <ul class="sidebar-nav" id="sidebar-nav">
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="index-driver.html">
+        <a class="nav-link collapsed" href="index.html">
           <i class="bi bi-grid"></i>
           <span>Dashboard</span>
         </a>
       </li><!-- End Dashboard Nav -->
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="Perjalanan.html">
+        <a class="nav-link collapsed" href="pemesanan.html">
           <i class="bi bi-journal-text"></i>
-          <span>Perjalanan</span>
+          <span>Pemesanan</span>
         </a>
-        
       </li><!-- End Form Page Nav -->
 
       <li class="nav-item">
-        <a class="nav-link " href="History.html">
-          <i class="bi bi-journal-text"></i>
-          <span>History</span>
+        <a class="nav-link " href="Perjalanan-passenger.html">
+          <i class="bi bi-layout-text-window-reverse"></i>
+          <span>Perjalanan</span>
         </a>
-      </li><!-- End Form Page Nav -->
+       </li><!-- End Tables Page Nav -->
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="history-perjalan.html">
+          <i class="bi bi-layout-text-window-reverse"></i>
+          <span>History Perjalanan</span>
+        </a>
+      </li><!-- End Tables Page Nav -->
 
       <li class="nav-item">
         <a class="nav-link collapsed" href="pages-login.html">
@@ -101,11 +107,11 @@
 <main id="main" class="main">
 
   <div class="pagetitle">
-    <h1>History</h1>
+    <h1>Perjalanan</h1>
     <nav>
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="index-driver.html">Home</a></li>
-        <li class="breadcrumb-item active">History</li>
+        <li class="breadcrumb-item active">Perjalanan</li>
       </ol>
     </nav>
   </div><!-- End Page Title -->
@@ -116,71 +122,43 @@
 
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title">History Data Driver</h5>
-              <p>Berikut adalah data history anda </p>
+              <h5 class="card-title">Perjalanan</h5>
 
-              <!-- Table with stripped rows -->
-              <table class="table datatable">
-                <thead>
-                  <tr>
-                    <th scope="col">id</th>
-                    <th scope="col">Penumpang</th>
-                    <th scope="col">Jemput</th>
-                    <th scope="col">Tujuan</th>
-                    <th scope="col">Biaya</th>
-                    <th scope="col">Jam</th>
-                    <th scope="col">Action</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <th scope="row">1</th>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td><button type="submit" class="btn btn-warning btn-primary">Lihat Ulasan</button></td>
-                  </tr>
-                  <tr>
-                    <th scope="row">2</th>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td><button type="submit" class="btn btn-warning btn-primary">Lihat Ulasan</button></td>
-                  </tr>
-                  <tr>
-                    <th scope="row">3</th>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td><button type="submit" class="btn btn-warning btn-primary">Lihat Ulasan</button></td>
-                  </tr>
-                  <tr>
-                    <th scope="row">4</th>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td><button type="submit" class="btn btn-warning btn-primary">Lihat Ulasan</button></td>
-                  </tr>
-                  <tr>
-                    <th scope="row">5</th>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td><button type="submit" class="btn btn-warning btn-primary">Lihat Ulasan</button></td>
-                  </tr>
-                </tbody>
-              </table>
-              <!-- End Table with stripped rows -->
+              <!-- General Form Elements -->
+              <form>
+                <div class="row mb-3">
+                  <label for="inputText" class="col-sm-2 col-form-label">Nama Driver</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control">
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <label for="inputEmail" class="col-sm-2 col-form-label">Jemput</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control">
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <label for="inputPassword" class="col-sm-2 col-form-label">Tujuan</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control">
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <label class="col-sm-2 col-form-label">Action</label>
+                  <div class="col-sm-10">
+                    <button type="submit" class="btn btn-warning btn-primary">Beri Ulasan</button>
+                  </div>
+                </div>
+
+              </form><!-- End General Form Elements -->
+
+            </div>
+          </div>
+
+        </div>
+
+              </form><!-- End General Form Elements -->
 
             </div>
           </div>
