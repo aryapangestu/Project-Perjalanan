@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Pemesanan</title>
+  <title>Edit Detail Penumpang - Perjalanan Admin Panel</title>
 
   <!-- Google Fonts -->
   <link href="https://fonts.gstatic.com" rel="preconnect">
@@ -17,28 +17,6 @@
 
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
-
-   <!-- leaflet css  -->
-   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
-   integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
-   crossorigin="" />
-
-
-    <style>
-        /* ukuran peta */
-        #mapid {
-            height: 100%;
-        }
-        .jumbotron{
-            height: 100%;
-            border-radius: 0;
-        }
-
-    </style>
-    <!-- leaflet js  -->
-    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
-    integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
-    crossorigin=""></script>
 </head>
 
 <body>
@@ -96,14 +74,14 @@
       </li><!-- End Dashboard Nav -->
 
       <li class="nav-item">
-        <a class="nav-link " href="pemesanan.html">
+        <a class="nav-link collapsed" href="pemesanan.html">
           <i class="bi bi-journal-text"></i>
           <span>Pemesanan</span>
         </a>
       </li><!-- End Form Page Nav -->
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="Perjalanan-passenger.html">
+        <a class="nav-link " href="Perjalanan-passenger.html">
           <i class="bi bi-layout-text-window-reverse"></i>
           <span>Perjalanan</span>
         </a>
@@ -129,11 +107,11 @@
 <main id="main" class="main">
 
   <div class="pagetitle">
-    <h1>Pemesanan</h1>
+    <h1>Perjalanan</h1>
     <nav>
       <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-        <li class="breadcrumb-item active">Pemesanan</li>
+        <li class="breadcrumb-item"><a href="index-driver.html">Home</a></li>
+        <li class="breadcrumb-item active">Perjalanan</li>
       </ol>
     </nav>
   </div><!-- End Page Title -->
@@ -144,43 +122,32 @@
 
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title">Form Pemesanan</h5>
+              <h5 class="card-title">Perjalanan</h5>
 
               <!-- General Form Elements -->
               <form>
                 <div class="row mb-3">
-                  <label class="col-sm-2 col-form-label">Pilih Kendaraan</label>
-                  <div class="col-sm-10">
-                    <select class="form-select" aria-label="Default select example">
-                      <option selected>Ride Type</option>
-                      <option value="1">Mobil</option>
-                      <option value="2">Motor</option>
-                    </select>
-                  </div>
-                </div>
-                <div class="row mb-3">
-                  <label for="inputText" class="col-sm-2 col-form-label">Titik Jemput</label>
+                  <label for="inputText" class="col-sm-2 col-form-label">Nama Driver</label>
                   <div class="col-sm-10">
                     <input type="text" class="form-control">
                   </div>
                 </div>
                 <div class="row mb-3">
-                  <label for="inputEmail" class="col-sm-2 col-form-label">Titik Tujuan</label>
+                  <label for="inputEmail" class="col-sm-2 col-form-label">Jemput</label>
                   <div class="col-sm-10">
                     <input type="text" class="form-control">
                   </div>
                 </div>
                 <div class="row mb-3">
-                  <label for="inputPassword" class="col-sm-2 col-form-label">Map</label>
+                  <label for="inputPassword" class="col-sm-2 col-form-label">Tujuan</label>
                   <div class="col-sm-10">
-                    <a type="submit" class="btn btn-primary" href="testmap.html">Pilih di map</a>
-                    <div id="mapid"></div></br></br></br></br></br></br></br></br></br></br></br>
+                    <input type="text" class="form-control">
                   </div>
-                </div></br>
+                </div>
                 <div class="row mb-3">
-                  <label class="col-sm-2 col-form-label">Submit Button</label>
+                  <label class="col-sm-2 col-form-label">Action</label>
                   <div class="col-sm-10">
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" class="btn btn-warning btn-primary">Beri Ulasan</button>
                   </div>
                 </div>
 
@@ -208,39 +175,6 @@
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
-
-  <script>
-    // set lokasi latitude dan longitude, lokasinya kota bandung 
-    var mymap = L.map('mapid').setView([-6.94573, 107.604062], 13);   
-    //setting maps menggunakan api mapbox bukan google maps, daftar dan dapatkan token      
-    L.tileLayer(
-        'https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibmFiaWxjaGVuIiwiYSI6ImNrOWZzeXh5bzA1eTQzZGxpZTQ0cjIxZ2UifQ.1YMI-9pZhxALpQ_7x2MxHw', {
-            attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-            maxZoom: 20,
-            id: 'mapbox/streets-v11', //menggunakan peta model streets-v11 kalian bisa melihat jenis-jenis peta lainnnya di web resmi mapbox
-            tileSize: 512,
-            zoomOffset: -1,
-            accessToken: 'your.mapbox.access.token'
-        }).addTo(mymap);
-        
-    </script>
-    <script>
-    // buat variabel berisi fugnsi L.popup 
-    var popup = L.popup();
-
-    // buat fungsi popup saat map diklik
-    function onMapClick(e) {                                                                        
-        popup
-            .setLatLng(e.latlng)
-            .setContent("koordinatnya adalah " + e.latlng
-                .toString()
-                ) //set isi konten yang ingin ditampilkan, kali ini kita akan menampilkan latitude dan longitude
-            .openOn(mymap);
-
-        document.getElementById('latlong').value = e.latlng //value pada form latitde, longitude akan berganti secara otomatis
-    }
-    mymap.on('click', onMapClick); //jalankan fungsi
-    </script>
 
 </body>
 
