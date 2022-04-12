@@ -69,10 +69,14 @@
 
                                 <div class="d-flex align-items-center">
                                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                                        <i class="bi bi-currency-dollar"></i>
+                                        <i class="bi bi-info"></i>
                                     </div>
                                     <div class="ps-3">
-                                        <h6>145</h6>
+                                        <span class="badge bg-success">ON</span>
+                                        <div class="form-check form-switch">
+                                            <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked"
+                                                checked="">
+                                        </div>
                                     </div>
                                 </div>
                             </div>
