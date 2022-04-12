@@ -1,12 +1,12 @@
-@extends('layouts.main')
+@extends('passenger.layouts.main')
 
 @section('main')
     <div class="pagetitle">
-        <h1>Dashboard</h1>
+        <h1>Perjalanan</h1>
         <nav>
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                <li class="breadcrumb-item active">Dashboard</li>
+                <li class="breadcrumb-item"><a href="index-driver.html">Home</a></li>
+                <li class="breadcrumb-item active">Perjalanan</li>
             </ol>
         </nav>
     </div><!-- End Page Title -->
@@ -17,32 +17,32 @@
 
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">Form Penumpang</h5>
+                        <h5 class="card-title">Perjalanan</h5>
 
                         <!-- General Form Elements -->
                         <form>
                             <div class="row mb-3">
-                                <label for="inputText" class="col-sm-2 col-form-label">Nama Lengkap</label>
+                                <label for="inputText" class="col-sm-2 col-form-label">Nama Driver</label>
                                 <div class="col-sm-10">
                                     <input type="text" class="form-control">
                                 </div>
                             </div>
                             <div class="row mb-3">
-                                <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
+                                <label for="inputEmail" class="col-sm-2 col-form-label">Jemput</label>
                                 <div class="col-sm-10">
-                                    <input type="email" class="form-control">
+                                    <input type="text" class="form-control">
                                 </div>
                             </div>
                             <div class="row mb-3">
-                                <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
+                                <label for="inputPassword" class="col-sm-2 col-form-label">Tujuan</label>
                                 <div class="col-sm-10">
-                                    <input type="password" class="form-control">
+                                    <input type="text" class="form-control">
                                 </div>
                             </div>
                             <div class="row mb-3">
-                                <label class="col-sm-2 col-form-label">Submit Button</label>
+                                <label class="col-sm-2 col-form-label">Action</label>
                                 <div class="col-sm-10">
-                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                    <button type="submit" class="btn btn-warning btn-primary">Beri Ulasan</button>
                                 </div>
                             </div>
 

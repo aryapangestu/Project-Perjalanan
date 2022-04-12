@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class DashboardPengemudiController extends Controller
+class AdminDriverController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,8 +13,8 @@ class DashboardPengemudiController extends Controller
      */
     public function index()
     {
-        return view('Dashboard.list-pengemudi', [
-            "title" => "list-pengemudi"
+        return view('admin.dashboard.list-pengemudi', [
+            "title" => "List-pengemudi Admin"
         ]);
     }
 

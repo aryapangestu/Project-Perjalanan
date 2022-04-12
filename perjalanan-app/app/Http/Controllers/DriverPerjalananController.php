@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class DashboardController extends Controller
+class DriverPerjalananController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,8 +13,8 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        return view('Dashboard.index', [
-            "title" => "dashboard"
+        return view('driver.dashboard.perjalanan', [
+            "title" => "Perjalanan Driver"
         ]);
     }
 

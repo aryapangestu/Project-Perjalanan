@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class DashboardPenumpangController extends Controller
+class PassengerHistoryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,8 +13,8 @@ class DashboardPenumpangController extends Controller
      */
     public function index()
     {
-        return view('Dashboard.list-penumpang', [
-            "title" => "list-penumpang"
+        return view('passenger.dashboard.history', [
+            "title" => "History Passenger"
         ]);
     }
 
