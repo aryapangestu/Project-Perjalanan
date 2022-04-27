@@ -27,9 +27,9 @@ Perjalanan adalah sebuah perangkat lunak yang membantu dalam hal transportasi ya
     copy .env.example .env
     ```
 5. Run XAMPP Apache & MySQL and create an empty Database named perjalanan-app
-   </br>Create tables into database:
+   </br>Create tables into database using Laravel migration and seeder:
     ```bash
-    php artisan migrate:fresh
+    php artisan migrate:fresh --seed
     ```
 7. Create the application key:
     ```bash
