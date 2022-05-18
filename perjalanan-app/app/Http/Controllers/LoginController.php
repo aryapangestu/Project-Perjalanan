@@ -30,6 +30,10 @@ class LoginController extends Controller
             $request->session()->regenerate();
             if (Auth::user()->role == 0) {
                 return redirect()->intended('/dashboard');
+            } else if (Auth::user()->role == 1) {
+                return redirect()->intended('/passenger');
+            } else if (Auth::user()->role == 2) {
+                return redirect()->intended('/driver');
             } else {
                 return back()->with('loginError', 'Login failed!');
             }

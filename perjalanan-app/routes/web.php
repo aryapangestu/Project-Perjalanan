@@ -42,18 +42,24 @@ Route::get('/register', [RegisterController::class, 'index'])->middleware('guest
 Route::post('/register', [RegisterController::class, 'store']);
 
 // AdminPanel
-Route::get('/', [AdminController::class, 'index'])->middleware('auth');
-Route::get('/dashboard', [AdminController::class, 'index'])->middleware('auth');
-Route::get('/list-pengemudi', [AdminDriverController::class, 'index'])->middleware('auth');
-Route::get('/list-penumpang', [AdminPassengerController::class, 'index'])->middleware('auth');
-
-// Driver
-Route::get('/driver', [DriverController::class, 'index'])->middleware('auth');
-Route::get('/driver/perjalanan', [DriverPerjalananController::class, 'index'])->middleware('auth');
-Route::get('/driver/history', [DriverHistoryController::class, 'index'])->middleware('auth');
+Route::group(['middleware' => ['auth', 'checkRole:0']], function () {
+    Route::get('/', [AdminController::class, 'index']);
+    Route::get('/dashboard', [AdminController::class, 'index']);
+    Route::get('/list-pengemudi', [AdminDriverController::class, 'index']);
+    Route::get('/list-penumpang', [AdminPassengerController::class, 'index']);
+});
 
 // Passenger
-Route::get('/passenger', [PassengerController::class, 'index'])->middleware('auth');
-Route::get('/passenger/pemesanan', [PassengerPemesananController::class, 'index'])->middleware('auth');
-Route::get('/passenger/perjalanan', [PassengerPerjalananController::class, 'index'])->middleware('auth');
-Route::get('/passenger/history', [PassengerHistoryController::class, 'index'])->middleware('auth');
+Route::group(['middleware' => ['auth', 'checkRole:1']], function () {
+    Route::get('/passenger', [PassengerController::class, 'index']);
+    Route::get('/passenger/pemesanan', [PassengerPemesananController::class, 'index']);
+    Route::get('/passenger/perjalanan', [PassengerPerjalananController::class, 'index']);
+    Route::get('/passenger/history', [PassengerHistoryController::class, 'index']);
+});
+
+// Driver
+Route::group(['middleware' => ['auth', 'checkRole:2']], function () {
+    Route::get('/driver', [DriverController::class, 'index']);
+    Route::get('/driver/perjalanan', [DriverPerjalananController::class, 'index']);
+    Route::get('/driver/history', [DriverHistoryController::class, 'index']);
+});
