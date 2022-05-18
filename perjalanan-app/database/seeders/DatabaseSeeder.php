@@ -17,7 +17,7 @@ class DatabaseSeeder extends Seeder // memanggil fungsi Seeder
     public function run()
     {
         User::factory(10)->create(); // membuat data dummy sebanyak 10
-        User::create([
+        User::create([ //membuat detail isi table
             'name' => 'admin',
             'email' => 'admin@gmail.com',
             'password' => Hash::make('admin'),
