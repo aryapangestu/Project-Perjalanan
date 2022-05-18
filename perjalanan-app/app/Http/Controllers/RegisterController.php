@@ -26,8 +26,10 @@ class RegisterController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
     public function store(Request $request)
     {
+
         $validated = $request->validate([
             'name' => 'required|max:255',
             'email' => 'required|email|unique:users',
@@ -38,6 +40,7 @@ class RegisterController extends Controller
         $validated['password'] = Hash::make($validated['password']);
 
         User::create($validated);
+
         return redirect('/login');
     }
 }
