@@ -51,6 +51,7 @@ Route::group(['middleware' => ['auth', 'checkRole:0']], function () {
 
 // Passenger
 Route::group(['middleware' => ['auth', 'checkRole:1']], function () {
+    Route::get('/', [PassengerController::class, 'index']);
     Route::get('/passenger', [PassengerController::class, 'index']);
     Route::get('/passenger/pemesanan', [PassengerPemesananController::class, 'index']);
     Route::get('/passenger/perjalanan', [PassengerPerjalananController::class, 'index']);
@@ -59,6 +60,7 @@ Route::group(['middleware' => ['auth', 'checkRole:1']], function () {
 
 // Driver
 Route::group(['middleware' => ['auth', 'checkRole:2']], function () {
+    Route::get('/', [DriverController::class, 'index']);
     Route::get('/driver', [DriverController::class, 'index']);
     Route::get('/driver/perjalanan', [DriverPerjalananController::class, 'index']);
     Route::get('/driver/history', [DriverHistoryController::class, 'index']);
