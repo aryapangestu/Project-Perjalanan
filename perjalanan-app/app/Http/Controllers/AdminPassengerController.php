@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Passenger;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class AdminPassengerController extends Controller
@@ -14,7 +16,8 @@ class AdminPassengerController extends Controller
     public function index()
     {
         return view('admin.dashboard.list-penumpang', [
-            "title" => "List-penumpang Admin"
+            "title" => "List-penumpang Admin",
+            "users" => User::all()
         ]);
     }
 

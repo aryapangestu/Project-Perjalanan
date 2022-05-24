@@ -41,4 +41,17 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * Get the passenger that owns the User.
+     */
+    public function passenger()
+    {
+        return $this->hasOne(Passenger::class);
+    }
+
+    public function driver()
+    {
+        return $this->hasOne(Driver::class);
+    }
 }

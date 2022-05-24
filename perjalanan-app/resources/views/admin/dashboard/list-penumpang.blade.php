@@ -31,23 +31,29 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <th scope="row">1</th>
-                                    <td>Penumpang</td>
-                                    <td>penumpang@user.com</td>
-                                    <td>28</td>
-                                    <td>
-                                        <div class="form-check form-switch">
-                                            <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked"
-                                                checked="">
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="d-flex">
-                                            <a href="#" class="btn btn-info">View</a>
-                                        </div>
-                                    </td>
-                                </tr>
+                                @foreach ($users as $user)
+                                    @if ($user->role == 1)
+                                        <tr>
+                                            <th scope="row">{{ $user->id }}</th>
+                                            <td>{{ $user->name }}</td>
+                                            <td>{{ $user->email }}</td>
+                                            <td>{{ $user->passenger->total_rides ?? 'None' }}</td>
+                                            <td>
+                                                <div class="form-check form-switch">
+                                                    <input class="form-check-input" type="checkbox"
+                                                        onclick="ubahStatus({{ $user->id }})"
+                                                        {{ $user->status === 1 ? 'checked = ""' : '' }}>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="d-flex">
+                                                    <a href="/list-pengemudi/{{ $user->id }}/view"
+                                                        class="btn btn-info" style="margin-right:2px">View</a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    @endif
+                                @endforeach
                             </tbody>
                         </table>
                         <!-- End Table with stripped rows -->
