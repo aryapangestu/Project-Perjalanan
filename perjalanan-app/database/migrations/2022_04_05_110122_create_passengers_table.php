@@ -14,12 +14,12 @@ return new class extends Migration
     public function up()
     {
         Schema::create('passengers', function (Blueprint $table) {
-            $table->unsignedBigInteger('user_id');
-            $table->integer('wallet_balance',)->default('0');
-            $table->integer('total_rides',)->default('0');
-            $table->timestamps();
+            $table->unsignedBigInteger('user_id'); // Membuat kolom 'user_id'
+            $table->integer('wallet_balance',)->default('0'); // Membuat kolom 'wallet_balance' dengan nilai awal '0'
+            $table->integer('total_rides',)->default('0'); // Membuat kolom 'total_rides' dengan nilai awal '0'
+            $table->timestamps(); // Membuat kolom 'waktu'
 
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users'); // Membuat Foreign Key
         });
     }
 
@@ -28,6 +28,7 @@ return new class extends Migration
      *
      * @return void
      */
+    // Fungsi DOWN untuk mengembalikan semua operasi yg dilakukan oleh UP
     public function down()
     {
         Schema::dropIfExists('passengers');

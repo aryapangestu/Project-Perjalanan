@@ -14,13 +14,13 @@ return new class extends Migration
     public function up()
     {
         Schema::create('users', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->string('password');
-            $table->integer('role',)->default('1');
-            $table->integer('status',)->default('1');
-            $table->timestamps();
+            $table->id(); // Membuat kolom 'id'
+            $table->string('name'); // MEmbuat kolom 'nama'
+            $table->string('email')->unique(); // Membuat kolom 'email'
+            $table->string('password'); // Membuat kolom 'password'
+            $table->integer('role',)->default('1'); // Membuat kolom 'role'
+            $table->integer('status',)->default('1'); // Membuat kolom 'status'
+            $table->timestamps(); // Membuat kolom 'waktu'
         });
     }
 
@@ -29,6 +29,7 @@ return new class extends Migration
      *
      * @return void
      */
+    // Fungsi DOWN untuk mengembalikan semua operasi yg dilakukan oleh UP
     public function down()
     {
         Schema::dropIfExists('users');
