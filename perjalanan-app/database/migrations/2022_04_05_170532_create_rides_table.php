@@ -15,17 +15,17 @@ return new class extends Migration
     {
         Schema::create('rides', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('driver_id');
-            $table->unsignedBigInteger('passenger_id');
-            $table->double('pick_up_form_latitude', 15, 8)->default(null);
-            $table->double('pick_up_form_longitude', 15, 8)->default(null);
-            $table->double('drop_to_latitude', 15, 8)->default(null);
-            $table->double('drop_to_longitude', 15, 8)->default(null);
-            $table->integer('amount');
-            $table->timestamps();
+            $table->unsignedBigInteger('driver_id'); // membuat kolom 'driver_id
+            $table->unsignedBigInteger('passenger_id'); // membuat kolom 'passenger_id'
+            $table->double('pick_up_form_latitude', 15, 8)->default(null); // membuat kolom 'pick_up form latitude'
+            $table->double('pick_up_form_longitude', 15, 8)->default(null); // membuat kolom 'pick_up form longitude'
+            $table->double('drop_to_latitude', 15, 8)->default(null); // membuat kolom 'drop_up form latitude'
+            $table->double('drop_to_longitude', 15, 8)->default(null); // membuat kolom 'drop_up form longitude'
+            $table->integer('amount'); // membuat kolom 'amount'
+            $table->timestamps(); // membuat kolom waktu
 
-            $table->foreign('driver_id')->references('user_id')->on('drivers');
-            $table->foreign('passenger_id')->references('user_id')->on('passengers');
+            $table->foreign('driver_id')->references('user_id')->on('drivers'); // membuat foreign key
+            $table->foreign('passenger_id')->references('user_id')->on('passengers'); // membuat foreign key
         });
     }
 
@@ -34,6 +34,7 @@ return new class extends Migration
      *
      * @return void
      */
+    // Fungsi DOWN untuk mengembalikan semua operasi yg dilakukan oleh UP
     public function down()
     {
         Schema::dropIfExists('rides');

@@ -47,7 +47,7 @@
                                             </td>
                                             <td>
                                                 <div class="d-flex">
-                                                    <a href="/list-pengemudi/{{ $user->id }}/view"
+                                                    <a href="/list-penumpang/{{ $user->id }}/view"
                                                         class="btn btn-info" style="margin-right:2px">View</a>
                                                 </div>
                                             </td>
