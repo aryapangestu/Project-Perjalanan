@@ -57,6 +57,6 @@ class User extends Authenticatable
 
     public function vehicle()
     {
-        return $this->belongsTo(vehicle::class);
+        return $this->hasOne(vehicle::class);
     }
 }

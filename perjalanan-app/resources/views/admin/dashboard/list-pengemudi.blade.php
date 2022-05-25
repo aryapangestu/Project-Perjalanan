@@ -38,18 +38,22 @@
                                             <th scope="row">{{ $user->id }}</th>
                                             <td>{{ $user->name }}</td>
                                             <td>{{ $user->email }}</td>
-                                            <td>{{ $user->driver->vehicle->jenis ?? 'None'}}</td>
+                                            @if ($user->driver->vehicle->jenis == 0)
+                                            <td>Motor</td>
+                                            @elseif($user->driver->vehicle->jenis == 1)
+                                            <td>Mobil</td>
+                                            @endif
                                             <td>{{ $user->driver->total_rides ?? 'None'}}</td>
                                             <td>
                                                 <div class="form-check form-switch">
                                                     <input class="form-check-input" type="checkbox"
                                                         onclick="ubahStatus({{ $user->id }})"
-                                                        {{ $user->status === 2 ? 'checked = ""' : '' }}>
+                                                        {{ $user->status === 1 ? 'checked = ""' : '' }}>
                                                 </div>
                                             </td>
                                             <td>
                                                 <div class="d-flex">
-                                                    <a href="/list-penumpang/{{ $user->id }}/view"
+                                                    <a href="/list-pengemudi/{{ $user->id }}/view"
                                                         class="btn btn-info" style="margin-right:2px">View</a>
                                                 </div>
                                             </td>
