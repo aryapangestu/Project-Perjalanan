@@ -50,7 +50,7 @@
                                         <i class="bi bi-person-video2"></i>
                                     </div>
                                     <div class="ps-3">
-                                        <h6>264</h6>
+                                        <h6>{{ $total_driver }}</h6>
                                     </div>
                                 </div>
                             </div>

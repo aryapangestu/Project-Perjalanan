@@ -16,7 +16,8 @@ class AdminController extends Controller
     {
         return view('admin.dashboard.index', [
             "title" => "Dashboard Admin",
-            "total_passenger" => User::all()->where('role', 1)->count()
+            "total_passenger" => User::all()->where('role', 1)->count(),
+            "total_driver" => User::all()->where('role', 2)->count(),
         ]);
     }
 
