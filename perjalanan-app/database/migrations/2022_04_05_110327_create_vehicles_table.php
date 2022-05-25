@@ -14,11 +14,11 @@ return new class extends Migration
     public function up()
     {
         Schema::create('vehicles', function (Blueprint $table) {
-            $table->id();
-            $table->string('model',);
-            $table->string('plat');
-            $table->boolean('jenis');
-            $table->timestamps();
+            $table->id(); // Membuat kolom 'id'
+            $table->string('model',); // MEmbuat kolom 'model'
+            $table->string('plat'); // Membuat kolom 'plat'
+            $table->boolean('jenis'); // Memebuat kolom 'jenis'
+            $table->timestamps(); // membuat kolom waktu
         });
     }
 
@@ -27,6 +27,7 @@ return new class extends Migration
      *
      * @return void
      */
+    // Fungsi DOWN untuk mengembalikan semua operasi yg dilakukan oleh UP
     public function down()
     {
         Schema::dropIfExists('vehicles');
