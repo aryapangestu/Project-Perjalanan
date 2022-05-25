@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\User;
+use App\Models\Driver;
 
 class AdminDriverController extends Controller
 {
@@ -14,7 +16,8 @@ class AdminDriverController extends Controller
     public function index()
     {
         return view('admin.dashboard.list-pengemudi', [
-            "title" => "List-pengemudi Admin"
+            "title" => "List-pengemudi Admin",
+            "users" => User::all()
         ]);
     }
 
