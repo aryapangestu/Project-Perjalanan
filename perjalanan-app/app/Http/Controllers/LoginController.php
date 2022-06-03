@@ -41,14 +41,16 @@ class LoginController extends Controller
             // Redirect route sesuai role user
             if (Auth::user()->role == 0) {
                 return redirect('/dashboard');
-            } else if (Auth::user()->role == 1) {
-                return redirect('/passenger');
-            } else if (Auth::user()->role == 2) {
-                return redirect('/driver');
-            } else {
-                // jika role tidak ada maka login failed dengan mengirim pesan alert loginError yang berisi Login failed!
-                return back()->with('loginError', 'Login failed!');
             }
+            if (Auth::user()->role == 1) {
+                return redirect('/passenger');
+            }
+            if (Auth::user()->role == 2) {
+                return redirect('/driver');
+            }
+            // jika role tidak ada maka login failed dengan mengirim pesan alert loginError yang berisi Login failed!
+            LoginController::_logout($request);
+            return back()->with('loginError', 'Login failed!');
         }
 
         // jika login gagal/user atau password user tidak tersedia maka akan kembali/back view
@@ -61,6 +63,15 @@ class LoginController extends Controller
     public function logout(Request $request)
     {
         // Ini akan menghapus informasi otentikasi dari sesi pengguna sehingga permintaan berikutnya tidak diautentikasi.
+        LoginController::_logout($request);
+
+        // Setelah mengeluarkan pengguna maka akan mengarahkan pengguna ke root aplikasi
+        return redirect('/');
+    }
+
+    private function _logout(Request $request)
+    {
+        // Ini akan menghapus informasi otentikasi dari sesi pengguna sehingga permintaan berikutnya tidak diautentikasi.
         Auth::logout();
 
         // invalidate sesi pengguna
@@ -68,8 +79,5 @@ class LoginController extends Controller
 
         // membuat ulang token CSRF user
         $request->session()->regenerateToken();
-
-        // Setelah mengeluarkan pengguna maka akan mengarahkan pengguna ke root aplikasi
-        return redirect('/');
     }
 }
