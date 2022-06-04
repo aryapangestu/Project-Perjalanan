@@ -6,6 +6,8 @@ use App\Http\Controllers\RegisterController;
 use Illuminate\Auth\Events\Login;
 use Symfony\Component\HttpKernel\DependencyInjection\RegisterLocaleAwareServicesPass;
 
+use App\Http\Controllers\HomeController;
+
 // Admin
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AdminDriverController;
@@ -21,6 +23,7 @@ use App\Http\Controllers\PassengerController;
 use App\Http\Controllers\PassengerPemesananController;
 use App\Http\Controllers\PassengerPerjalananController;
 use App\Http\Controllers\PassengerHistoryController;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,27 +44,25 @@ Route::post('/logout', [LoginController::class, 'logout']);
 Route::get('/register', [RegisterController::class, 'index'])->middleware('guest');
 Route::post('/register', [RegisterController::class, 'store']);
 
-// AdminPanel
-Route::group(['middleware' => ['auth', 'checkRole:0']], function () {
-    Route::get('/', [AdminController::class, 'index']);
-    Route::get('/dashboard', [AdminController::class, 'index']);
-    Route::get('/list-pengemudi', [AdminDriverController::class, 'index']);
-    Route::get('/list-penumpang', [AdminPassengerController::class, 'index']);
-});
+Route::middleware(['auth'])->group(function () {
+    Route::get('/', [HomeController::class, 'index']);
 
-// Passenger
-Route::group(['middleware' => ['auth', 'checkRole:1']], function () {
-    Route::get('/', [PassengerController::class, 'index']);
-    Route::get('/passenger', [PassengerController::class, 'index']);
-    Route::get('/passenger/pemesanan', [PassengerPemesananController::class, 'index']);
-    Route::get('/passenger/perjalanan', [PassengerPerjalananController::class, 'index']);
-    Route::get('/passenger/history', [PassengerHistoryController::class, 'index']);
-});
+    Route::middleware(['checkRole:0'])->group(function () {
+        Route::get('/dashboard', [AdminController::class, 'index']);
+        Route::get('/list-pengemudi', [AdminDriverController::class, 'index']);
+        Route::get('/list-penumpang', [AdminPassengerController::class, 'index']);
+    });
 
-// Driver
-Route::group(['middleware' => ['auth', 'checkRole:2']], function () {
-    Route::get('/', [DriverController::class, 'index']);
-    Route::get('/driver', [DriverController::class, 'index']);
-    Route::get('/driver/perjalanan', [DriverPerjalananController::class, 'index']);
-    Route::get('/driver/history', [DriverHistoryController::class, 'index']);
+    Route::middleware(['checkRole:1'])->group(function () {
+        Route::get('/passenger', [PassengerController::class, 'index']);
+        Route::get('/passenger/pemesanan', [PassengerPemesananController::class, 'index']);
+        Route::get('/passenger/perjalanan', [PassengerPerjalananController::class, 'index']);
+        Route::get('/passenger/history', [PassengerHistoryController::class, 'index']);
+    });
+
+    Route::middleware(['checkRole:2'])->group(function () {
+        Route::get('/driver', [DriverController::class, 'index']);
+        Route::get('/driver/perjalanan', [DriverPerjalananController::class, 'index']);
+        Route::get('/driver/history', [DriverHistoryController::class, 'index']);
+    });
 });
