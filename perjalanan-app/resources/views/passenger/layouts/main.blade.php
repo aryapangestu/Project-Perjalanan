@@ -71,7 +71,7 @@
             } else if (str == "1") {
                 document.getElementById("mapbox-directions-profile-driving").click();
             } else if (str == "2") {
-                document.getElementById("mapbox-directions-profile-cycling").click();
+                document.getElementById("mapbox-directions-profile-walking").click();
             }
         }
     </script>
