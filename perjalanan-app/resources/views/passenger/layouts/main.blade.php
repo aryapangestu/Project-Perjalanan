@@ -20,6 +20,10 @@
     <!-- Template Main CSS File -->
     <link href="{{ URL::asset('assets/css/style.css') }}" rel="stylesheet">
 
+    <!-- Mapbox -->
+    <link href="https://api.mapbox.com/mapbox-gl-js/v2.8.2/mapbox-gl.css" rel="stylesheet">
+    <script src="https://api.mapbox.com/mapbox-gl-js/v2.8.2/mapbox-gl.js"></script>
+
 </head>
 
 <body>
@@ -40,37 +44,36 @@
     <script src="{{ URL::asset('assets/js/main.js') }}"></script>
 
     <script>
-        // set lokasi latitude dan longitude, lokasinya kota bandung
-        var mymap = L.map('mapid').setView([-6.94573, 107.604062], 13);
-        //setting maps menggunakan api mapbox bukan google maps, daftar dan dapatkan token
-        L.tileLayer(
-            'https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibmFiaWxjaGVuIiwiYSI6ImNrOWZzeXh5bzA1eTQzZGxpZTQ0cjIxZ2UifQ.1YMI-9pZhxALpQ_7x2MxHw', {
-                attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-                maxZoom: 20,
-                id: 'mapbox/streets-v11', //menggunakan peta model streets-v11 kalian bisa melihat jenis-jenis peta lainnnya di web resmi mapbox
-                tileSize: 512,
-                zoomOffset: -1,
-                accessToken: 'your.mapbox.access.token'
-            }).addTo(mymap);
-    </script>
+        mapboxgl.accessToken = 'pk.eyJ1IjoiYXJ5YXAyIiwiYSI6ImNsMXU1MmJ3NjJpemQzcXVrNnQ3cDFibmEifQ.WtmVOqIR6MWhE9HNjQpPkw';
+        const map = new mapboxgl.Map({
+            container: 'map',
+            style: 'mapbox://styles/mapbox/streets-v11',
+            center: [107.60340, -6.93487],
+            zoom: 12
+        });
 
-    <script>
-        // buat variabel berisi fugnsi L.popup
-        var popup = L.popup();
+        var directions = new MapboxDirections({
+            accessToken: mapboxgl.accessToken,
+            unit: 'metric',
+            profile: 'mapbox/driving',
+            language: 'id-ID',
+            placeholderOrigin: 'Pilih titik jemput',
+            placeholderDestination: 'Pilih tujuan',
+            controls: {
+                instructions: false
+            }
+        });
+        map.addControl(directions, 'top-left');
 
-        // buat fungsi popup saat map diklik
-        function onMapClick(e) {
-            popup
-                .setLatLng(e.latlng)
-                .setContent("koordinatnya adalah " + e.latlng
-                    .toString()
-                ) //set isi konten yang ingin ditampilkan, kali ini kita akan menampilkan latitude dan longitude
-                .openOn(mymap);
-
-            document.getElementById('latlong').value = e
-                .latlng //value pada form latitde, longitude akan berganti secara otomatis
+        function changeInstructions(str) {
+            if (str == "") {
+                directions.on(error);
+            } else if (str == "1") {
+                document.getElementById("mapbox-directions-profile-driving").click();
+            } else if (str == "2") {
+                document.getElementById("mapbox-directions-profile-cycling").click();
+            }
         }
-        mymap.on('click', onMapClick); //jalankan fungsi
     </script>
 
 </body>
