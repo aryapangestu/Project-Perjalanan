@@ -38,19 +38,24 @@ class LoginController extends Controller
             // Membuat ulang sesi pengguna untuk mencegah fiksasi sesi
             $request->session()->regenerate();
 
-            // Redirect route sesuai role user
+            // Simpan nama route sesuai role user
             if (Auth::user()->role == 0) {
-                return redirect('/dashboard');
+                $temp = '/dashboard';
+            } else if (Auth::user()->role == 1) {
+                $temp = '/passenger';
+            } else if (Auth::user()->role == 2) {
+                $temp = '/driver';
+            } else {
+                $temp = '';
             }
-            if (Auth::user()->role == 1) {
-                return redirect('/passenger');
+
+            if ($temp != '') {
+                // Redirect route sesuai role user
+                return redirect($temp);
+            } else {
+                // jika role tidak ada maka akan logout untuk menghancurkan session
+                LoginController::_logout($request);
             }
-            if (Auth::user()->role == 2) {
-                return redirect('/driver');
-            }
-            // jika role tidak ada maka login failed dengan mengirim pesan alert loginError yang berisi Login failed!
-            LoginController::_logout($request);
-            return back()->with('loginError', 'Login failed!');
         }
 
         // jika login gagal/user atau password user tidak tersedia maka akan kembali/back view
