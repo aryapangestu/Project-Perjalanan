@@ -74,6 +74,65 @@
                 document.getElementById("mapbox-directions-profile-walking").click();
             }
         }
+        const tujuan = document.getElementById('tujuan');
+        const jemput = document.getElementById('jemput');
+        const durasi = document.getElementById('durasi');
+        const jarak = document.getElementById('jarak');
+        const biaya = document.getElementById('biaya');
+        const typeRide = document.getElementById('typeRide');
+
+        // format int ke currency indonesia
+        var formatter = new Intl.NumberFormat('id-ID', {
+            style: 'currency',
+            currency: 'IDR',
+        });
+
+        map.on('load', () => {
+            directions.on('route', (event) => {
+                seconds = event.route[0].duration;
+                distance = event.route[0].distance;
+
+                tujuan.value = directions.getDestination().geometry.coordinates;
+                jemput.value = directions.getOrigin().geometry.coordinates;
+                durasi.innerHTML = secondsToDhms(seconds);
+
+                // lebih dari 500 meter, maka print KM saja
+                if (distance > 500) {
+                    distanceResult = (distance / 1000).toFixed(1);
+                    jarak.innerHTML = distanceResult + " kilometer ";
+                } else {
+                    distanceResult = distance.toFixed(1);
+                    jarak.innerHTML = distanceResult + " meter ";
+                }
+
+                if (typeRide.value == "1") {
+                    // Mobil 10000/KM
+                    biayaResult = ((distance / 1000) * 10000).toFixed(0);
+                    biaya.innerHTML = formatter.format(biayaResult);
+                } else if (typeRide.value == "2") {
+                    // Motor 3000/KM
+                    biayaResult = ((distance / 1000) * 3000).toFixed(0);
+                    biaya.innerHTML = formatter.format(biayaResult);
+                }
+
+
+            });
+        });
+
+        // convert detik to hari jam menit detik
+        function secondsToDhms(seconds) {
+            seconds = Number(seconds);
+            var d = Math.floor(seconds / (3600 * 24));
+            var h = Math.floor(seconds % (3600 * 24) / 3600);
+            var m = Math.floor(seconds % 3600 / 60);
+            var s = Math.floor(seconds % 60);
+
+            var dDisplay = d > 0 ? d + (d == 1 ? " day, " : " hari, ") : "";
+            var hDisplay = h > 0 ? h + (h == 1 ? " hour, " : " jam, ") : "";
+            var mDisplay = m > 0 ? m + (m == 1 ? " minute, " : " menit, ") : "";
+            var sDisplay = s > 0 ? s + (s == 1 ? " second" : " detik") : "";
+            return dDisplay + hDisplay + mDisplay + sDisplay;
+        }
     </script>
 
 </body>

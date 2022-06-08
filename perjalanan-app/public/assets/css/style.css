@@ -703,6 +703,27 @@ h6 {
     min-height: 40rem;
 }
 
+.mapboxgl-canvas {
+    margin-left: 0.8rem;
+    right: 0.8rem;
+}
+
+.mapbox-directions-component-keyline {
+    margin-left: 0.8rem;
+}
+
+.mapboxgl-ctrl-bottom-left {
+    margin-left: 0.8rem;
+}
+
 .mapbox-directions-profile {
+    display: none;
+}
+
+.hide {
+    display: none;
+}
+
+button[title="Reverse origin & destination"] {
     display: none;
 }
