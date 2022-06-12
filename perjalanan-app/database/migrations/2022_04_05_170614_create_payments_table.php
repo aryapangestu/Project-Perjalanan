@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id(); // Membuat kolom 'id'
             $table->unsignedBigInteger('ride_id'); // membuat kolom 'ride_id'
             $table->integer('amount'); // membuat kolom 'amount'
-            $table->string('type', 255);
+            $table->string('type', 255)->nullable();
             $table->integer('status')->default(0);
             $table->timestamps(); // membuat kolom waktu
 

@@ -27,6 +27,21 @@
                                             {{ $ride->driver_id == null ? 'Sedang mencari driver' : $ride->driver->user->name }}
                                         </div>
                                     </div>
+                                    @if ($ride->driver_id != null)
+                                        <div class="row mb-3">
+                                            <div class="col-sm-2 label ">Jenis kendaraan</div>
+                                            <div class="col-sm-10">
+                                                {{ $ride->driver->vehicle->jenis == 0 ? 'Motor' : 'Mobil' }}</div>
+                                        </div>
+                                        <div class="row mb-3">
+                                            <div class="col-sm-2 label ">Model kendaraan</div>
+                                            <div class="col-sm-10">{{ $ride->driver->vehicle->model }}</div>
+                                        </div>
+                                        <div class="row mb-3">
+                                            <div class="col-sm-2 label ">Plat kendaraan</div>
+                                            <div class="col-sm-10">{{ $ride->driver->vehicle->plat }}</div>
+                                        </div>
+                                    @endif
                                     <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v4.1.0/mapbox-gl-directions.js"></script>
                                     <link rel="stylesheet"
                                         href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v4.1.0/mapbox-gl-directions.css"
@@ -52,10 +67,21 @@
                                         <div class="col-sm-10" id='biaya'>Rp 0,00</div>
                                     </div>
 
+                                    @if ($ride->driver_id == null)
+                                        <div class="row mb-3">
+                                            <div class="col-sm-2 label "></div>
+                                            <label class="col-sm-10"> Mencari driver terlebih dahulu... </label>
+                                        </div>
+                                    @elseif ($ride->payment->status == 0)
+                                        <div class="row mb-3">
+                                            <div class="col-sm-2 label "></div>
+                                            <label class="col-sm-10"> Bayar terlebih dahulu </label>
+                                        </div>
+                                    @endif
                                     <div class="row mb-3">
                                         <label class="col-sm-2 col-form-label"></label>
                                         <div class="col-sm-10">
-                                            <button type="submit" class="btn btn-warning btn-primary"
+                                            <button type="submit" class="btn btn-primary"
                                                 {{ $ride->driver_id == null ? 'disabled' : '' }}>Selesai</button>
                                         </div>
                                     </div>
@@ -94,6 +120,7 @@
                 currency: 'IDR',
             });
             var ride = {!! json_encode($ride->toArray()) !!};
+            var payment = {!! json_encode($ride->payment->toArray()) !!};
 
             const durasi = document.getElementById('durasi');
             const jarak = document.getElementById('jarak');
@@ -131,9 +158,9 @@
                 directions.setDestination([107.56667000, -6.95000000]);
                 directions.on('route', (event) => {
                     seconds = event.route[0].duration;
-                    distance = event.route[0].distance;
 
                     durasi.innerHTML = secondsToDhms(seconds);
+                    biaya.innerHTML = formatter.format(payment.amount);
 
                     // lebih dari 500 meter, maka print KM saja
                     if (distance > 500) {
@@ -144,16 +171,6 @@
                         jarak.innerHTML = distanceResult + " meter ";
                     }
 
-                    // Biaya
-                    if (ride.vehicle_type == 'Mobil') {
-                        // Mobil 10000/KM
-                        biayaResult = ((distance / 1000) * 10000).toFixed(0);
-                        biaya.innerHTML = formatter.format(biayaResult);
-                    } else if (ride.vehicle_type == 'Motor') {
-                        // Motor 3000/KM
-                        biayaResult = ((distance / 1000) * 3000).toFixed(0);
-                        biaya.innerHTML = formatter.format(biayaResult);
-                    }
                 });
             })
             // convert detik to hari jam menit detik
