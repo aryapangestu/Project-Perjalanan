@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Passenger;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class DriverPerjalananController extends Controller
+class PassengerHistoryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,8 +14,8 @@ class DriverPerjalananController extends Controller
      */
     public function index()
     {
-        return view('driver.dashboard.perjalanan', [
-            "title" => "Perjalanan Driver"
+        return view('passenger.dashboard.history', [
+            "title" => "History Passenger"
         ]);
     }
 

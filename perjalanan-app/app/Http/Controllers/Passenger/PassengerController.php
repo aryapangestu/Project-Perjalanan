@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Passenger;
 
+use App\Http\Controllers\Controller;
+use App\Models\Ride;
 use Illuminate\Http\Request;
-use App\Models\User;
-use App\Models\Driver;
+use Illuminate\Support\Facades\Auth;
 
-class AdminDriverController extends Controller
+class PassengerController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,9 +16,9 @@ class AdminDriverController extends Controller
      */
     public function index()
     {
-        return view('admin.dashboard.list-pengemudi', [
-            "title" => "List-pengemudi Admin",
-            "users" => User::all()
+        return view('passenger.dashboard.index', [
+            "title" => "Dashboard Passenger",
+            "total_ride" => Ride::all()->where('passenger_id', Auth::user()->id)->count(),
         ]);
     }
 

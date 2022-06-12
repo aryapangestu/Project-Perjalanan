@@ -1,10 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Passenger;
 
+use App\Http\Controllers\Controller;
+use App\Models\Ride;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
-class DriverHistoryController extends Controller
+class PassengerPerjalananController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,8 +16,14 @@ class DriverHistoryController extends Controller
      */
     public function index()
     {
-        return view('driver.dashboard.history', [
-            "title" => "History Driver"
+        if (Ride::where('passenger_id', Auth::user()->id)->first() == null) {
+            $temp =  null;
+        } else {
+            $temp =  Ride::where('passenger_id', Auth::user()->id)->first();
+        }
+        return view('passenger.dashboard.perjalanan', [
+            "title" => "Perjalanan Passenger",
+            "ride" => $temp
         ]);
     }
 

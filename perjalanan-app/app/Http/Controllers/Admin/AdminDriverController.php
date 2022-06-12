@@ -1,10 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\User;
+use App\Models\Driver;
 
-class DriverController extends Controller
+class AdminDriverController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,8 +16,9 @@ class DriverController extends Controller
      */
     public function index()
     {
-        return view('driver.dashboard.index', [
-            "title" => "Dashboard Driver"
+        return view('admin.dashboard.list-pengemudi', [
+            "title" => "List-pengemudi Admin",
+            "users" => User::all()
         ]);
     }
 

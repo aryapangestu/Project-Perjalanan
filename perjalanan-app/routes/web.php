@@ -9,20 +9,20 @@ use Symfony\Component\HttpKernel\DependencyInjection\RegisterLocaleAwareServices
 use App\Http\Controllers\HomeController;
 
 // Admin
-use App\Http\Controllers\AdminController;
-use App\Http\Controllers\AdminDriverController;
-use App\Http\Controllers\AdminPassengerController;
+use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\AdminDriverController;
+use App\Http\Controllers\Admin\AdminPassengerController;
 
 // Driver
-use App\Http\Controllers\DriverController;
-use App\Http\Controllers\DriverPerjalananController;
-use App\Http\Controllers\DriverHistoryController;
+use App\Http\Controllers\Driver\DriverController;
+use App\Http\Controllers\Driver\DriverPerjalananController;
+use App\Http\Controllers\Driver\DriverHistoryController;
 
 // Passenger
-use App\Http\Controllers\PassengerController;
-use App\Http\Controllers\PassengerPemesananController;
-use App\Http\Controllers\PassengerPerjalananController;
-use App\Http\Controllers\PassengerHistoryController;
+use App\Http\Controllers\Passenger\PassengerController;
+use App\Http\Controllers\Passenger\PassengerPemesananController;
+use App\Http\Controllers\Passenger\PassengerPerjalananController;
+use App\Http\Controllers\Passenger\PassengerHistoryController;
 use Illuminate\Support\Facades\Auth;
 
 /*
@@ -55,9 +55,11 @@ Route::middleware(['auth'])->group(function () {
 
     Route::middleware(['checkRole:1'])->group(function () {
         Route::get('/passenger', [PassengerController::class, 'index']);
-        Route::get('/passenger/pemesanan', [PassengerPemesananController::class, 'index']);
         Route::get('/passenger/perjalanan', [PassengerPerjalananController::class, 'index']);
         Route::get('/passenger/history', [PassengerHistoryController::class, 'index']);
+
+        Route::get('/passenger/pemesanan', [PassengerPemesananController::class, 'index']);
+        Route::post('/passenger/pemesanan', [PassengerPemesananController::class, 'store']);
     });
 
     Route::middleware(['checkRole:2'])->group(function () {

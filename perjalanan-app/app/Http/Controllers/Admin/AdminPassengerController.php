@@ -1,11 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
+use App\Models\Passenger;
 use App\Models\User;
 use Illuminate\Http\Request;
 
-class AdminController extends Controller
+class AdminPassengerController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,10 +16,9 @@ class AdminController extends Controller
      */
     public function index()
     {
-        return view('admin.dashboard.index', [
-            "title" => "Dashboard Admin",
-            "total_passenger" => User::all()->where('role', 1)->count(),
-            "total_driver" => User::all()->where('role', 2)->count(),
+        return view('admin.dashboard.list-penumpang', [
+            "title" => "List-penumpang Admin",
+            "users" => User::all()
         ]);
     }
 
