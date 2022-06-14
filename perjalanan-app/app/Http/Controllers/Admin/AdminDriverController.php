@@ -22,6 +22,17 @@ class AdminDriverController extends Controller
         ]);
     }
 
+    public function updateDriverStatus($id)
+    {
+        if (User::where('id', $id)->first()->status === 1) {
+            $update = array('status' => 0);
+        } else {
+            $update = array('status' => 1);
+        }
+        User::where('id', $id)->update($update);
+        return;
+    }
+
     /**
      * Show the form for creating a new resource.
      *

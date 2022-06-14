@@ -12,6 +12,9 @@
     </div><!-- End Page Title -->
 
     <section class="section">
+        <div class="alert alert-success" id="alertStatusDriver" style="display:none;">
+            Pengemudi status updated successfully!
+        </div>
         <div class="row">
             <div class="col-lg-12">
 
@@ -48,12 +51,6 @@
                                             </div>
                                         </td>
                                         <td>
-                                            {{-- <div class="d-flex">
-                                                    <a href="/list-pengemudi/{{ $user->id }}/view"
-                                                        class="btn btn-info" style="margin-right:2px">View</a>
-
-                                                </div> --}}
-                                            <!-- Button trigger modal -->
                                             <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                                                 data-bs-target="#modalview{{ $user->id }}">
                                                 View
@@ -96,4 +93,28 @@
             </div>
         </div>
     </section>
+    <script>
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        function ubahStatus(id) {
+            $.ajax({
+                type: 'POST',
+                url: '/list-pengemudi/status/' + id,
+                data: {
+                    user_id: id
+                },
+                success: function() {
+                    $('#alertStatusDriver').fadeOut();
+                    $('#alertStatusDriver').fadeIn();
+                    setTimeout(function() {
+                        $('#alertStatusDrivers').fadeOut();
+                    }, 5000);
+                }
+            });
+        }
+    </script>
 @endsection
