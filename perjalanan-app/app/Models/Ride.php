@@ -24,4 +24,9 @@ class Ride extends Model
     {
         return $this->hasOne(Payment::class);
     }
+
+    public function review()
+    {
+        return $this->belongsTo(Review::class);
+    }
 }
