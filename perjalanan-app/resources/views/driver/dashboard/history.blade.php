@@ -26,81 +26,137 @@
                         <table class="table datatable">
                             <thead>
                                 <tr>
-                                    <th scope="col">id</th>
-                                    <th scope="col">Penumpang</th>
-                                    <th scope="col">Jemput</th>
-                                    <th scope="col">Tujuan</th>
+                                    <th scope="col">Nama passenger</th>
+                                    <th scope="col">Rute</th>
+                                    <th scope="col">Durasi</th>
+                                    <th scope="col">Jarak</th>
                                     <th scope="col">Biaya</th>
-                                    <th scope="col">Jam</th>
                                     <th scope="col">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <th scope="row">1</th>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td>
-                                        <button type="submit" class="btn btn-warning btn-primary">
-                                            Lihat Ulasan
-                                        </button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">2</th>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td>
-                                        <button type="submit" class="btn btn-warning btn-primary">
-                                            Lihat Ulasan
-                                        </button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">3</th>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td>
-                                        <button type="submit" class="btn btn-warning btn-primary">
-                                            Lihat Ulasan
-                                        </button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">4</th>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td>
-                                        <button type="submit" class="btn btn-warning btn-primary">
-                                            Lihat Ulasan
-                                        </button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">5</th>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td>
-                                        <button type="submit" class="btn btn-warning btn-primary">
-                                            Lihat Ulasan
-                                        </button>
-                                    </td>
-                                </tr>
+                                @foreach ($histories as $history)
+                                    <tr>
+                                        <td>{{ $history->passenger->user->name }}</td>
+                                        <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v4.1.0/mapbox-gl-directions.js"></script>
+                                        <link rel="stylesheet"
+                                            href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v4.1.0/mapbox-gl-directions.css"
+                                            type="text/css">
+                                        <td>
+                                            <!-- Button trigger modal -->
+                                            <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                                data-bs-target="#modalview{{ $history->id }}">
+                                                View
+                                            </button>
+
+                                            <!-- Modal -->
+                                            <div class="modal fade" id="modalview{{ $history->id }}" tabindex="-1"
+                                                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog modal-lg modal-dialog-centered">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModalLabel">Rute
+                                                            </h5>
+                                                            <button type="button" class="btn-close"
+                                                                data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <div class="mapNew" id="mapNew{{ $history->id }}">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td id='durasi{{ $history->id }}'></td>
+                                        <td id='jarak{{ $history->id }}'></td>
+                                        <td id='biaya{{ $history->id }}'></td>
+                                        <td>
+                                            <form action="/driver/history/{{ $history->id }}" method="post">
+                                                @csrf
+                                                <button type="submit" class="btn btn-success" style="margin-top: 2px"
+                                                    {{ $history->review_id == null ? 'disabled' : '' }}>
+                                                    Lihat ulasan
+                                                </button>
+                                            </form>
+                                        </td>
+                                        </td>
+                                    </tr>
+                                    <script>
+                                        // format int ke currency indonesia
+                                        var formatter = new Intl.NumberFormat('id-ID', {
+                                            style: 'currency',
+                                            currency: 'IDR',
+                                        });
+                                        var ride = {!! json_encode($history->toArray()) !!};
+                                        var payment = {!! json_encode($history->payment->toArray()) !!};
+
+                                        biaya = document.getElementById('biaya' + ride.id.toString());
+                                        jarak = document.getElementById('jarak' + ride.id.toString());
+                                        durasi = document.getElementById('durasi' + ride.id.toString());
+                                        biaya.innerHTML = formatter.format(payment.amount);
+
+                                        mapboxgl.accessToken = 'pk.eyJ1IjoiYXJ5YXAyIiwiYSI6ImNsMXU1MmJ3NjJpemQzcXVrNnQ3cDFibmEifQ.WtmVOqIR6MWhE9HNjQpPkw';
+                                        map = new mapboxgl.Map({
+                                            container: 'mapNew' + ride.id.toString(),
+                                            style: 'mapbox://styles/mapbox/streets-v11',
+                                            center: [107.60340, -6.93487],
+                                            zoom: 12,
+                                        });
+                                        if (ride.vehicle_type == 'Mobil') {
+                                            temp = 'mapbox/driving';
+                                        } else if (ride.vehicle_type == 'Motor') {
+                                            temp = 'mapbox/walking';
+                                        }
+                                        var directions = new MapboxDirections({
+                                            accessToken: mapboxgl.accessToken,
+                                            interactive: false,
+                                            unit: 'metric',
+                                            profile: temp,
+                                            language: 'id-ID',
+                                            controls: {
+                                                instructions: false,
+                                                inputs: false,
+                                            }
+                                        });
+                                        map.addControl(directions, 'top-left');
+                                        map.on('load', function() {
+                                            directions.setOrigin([ride.pick_up_form_longitude, ride.pick_up_form_latitude]);
+                                            directions.setDestination([ride.drop_to_longitude, ride.drop_to_latitude]);
+                                            directions.on('route', (event) => {
+                                                seconds = event.route[0].duration;
+                                                distance = event.route[0].distance;
+
+                                                durasi.innerHTML = secondsToDhms(seconds);
+                                                biaya.innerHTML = formatter.format(payment.amount);
+
+                                                // lebih dari 500 meter, maka print KM saja
+                                                if (distance > 500) {
+                                                    distanceResult = (distance / 1000).toFixed(1);
+                                                    jarak.innerHTML = distanceResult + " kilometer ";
+                                                } else {
+                                                    distanceResult = distance.toFixed(1);
+                                                    jarak.innerHTML = distanceResult + " meter ";
+                                                }
+
+                                            });
+                                        })
+                                        // convert detik to hari jam menit detik
+                                        function secondsToDhms(seconds) {
+                                            seconds = Number(seconds);
+                                            var d = Math.floor(seconds / (3600 * 24));
+                                            var h = Math.floor(seconds % (3600 * 24) / 3600);
+                                            var m = Math.floor(seconds % 3600 / 60);
+                                            var s = Math.floor(seconds % 60);
+
+                                            var dDisplay = d > 0 ? d + (d == 1 ? " day, " : " hari, ") : "";
+                                            var hDisplay = h > 0 ? h + (h == 1 ? " hour, " : " jam, ") : "";
+                                            var mDisplay = m > 0 ? m + (m == 1 ? " minute, " : " menit, ") : "";
+                                            var sDisplay = s > 0 ? s + (s == 1 ? " second" : " detik") : "";
+                                            return dDisplay + hDisplay + mDisplay + sDisplay;
+                                        }
+                                    </script>
+                                @endforeach
                             </tbody>
                         </table>
                         <!-- End Table with stripped rows -->

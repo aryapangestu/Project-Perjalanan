@@ -1,32 +1,30 @@
-@extends('driver.layouts.main')
+@extends('passenger.layouts.main')
 
 @section('main')
     <div class="pagetitle">
-        <h1>History</h1>
+        <h1>History Perjalanan</h1>
         <nav>
             <ol class="breadcrumb">
-                <li class="breadcrumb-item">
-                    <a href="index-driver.html">Home</a>
-                </li>
-                <li class="breadcrumb-item active">History</li>
+                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                <li class="breadcrumb-item active">History Perjalanan</li>
             </ol>
         </nav>
-    </div>
-    <!-- End Page Title -->
+    </div><!-- End Page Title -->
 
     <section class="section">
         <div class="row">
             <div class="col-lg-12">
+
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">History Data Driver</h5>
-                        <p>Berikut adalah data history anda</p>
+                        <h5 class="card-title">History</h5>
+                        <p>Berikut Daftar History Perjalanan Anda </p>
 
                         <!-- Table with stripped rows -->
                         <table class="table datatable">
                             <thead>
                                 <tr>
-                                    <th scope="col">Nama passenger</th>
+                                    <th scope="col">Nama driver</th>
                                     <th scope="col">Rute</th>
                                     <th scope="col">Durasi</th>
                                     <th scope="col">Jarak</th>
@@ -37,7 +35,7 @@
                             <tbody>
                                 @foreach ($histories as $history)
                                     <tr>
-                                        <td>{{ $history->passenger->user->name }}</td>
+                                        <td>{{ $history->driver->user->name }}</td>
                                         <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v4.1.0/mapbox-gl-directions.js"></script>
                                         <link rel="stylesheet"
                                             href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v4.1.0/mapbox-gl-directions.css"
@@ -72,11 +70,10 @@
                                         <td id='jarak{{ $history->id }}'></td>
                                         <td id='biaya{{ $history->id }}'></td>
                                         <td>
-                                            <form action="/driver/history/{{ $history->id }}" method="post">
+                                            <form action="/passenger/history/{{ $history->id }}" method="post">
                                                 @csrf
-                                                <button type="submit" class="btn btn-success" style="margin-top: 2px"
-                                                    {{ $history->review_id == null ? 'disabled' : '' }}>
-                                                    Lihat ulasan
+                                                <button type="submit" class="btn btn-success" style="margin-top: 2px">
+                                                    Ulasan
                                                 </button>
                                             </form>
                                         </td>
@@ -160,8 +157,10 @@
                             </tbody>
                         </table>
                         <!-- End Table with stripped rows -->
+
                     </div>
                 </div>
+
             </div>
         </div>
     </section>
