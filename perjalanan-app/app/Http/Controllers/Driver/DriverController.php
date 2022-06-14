@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Driver;
 
 use App\Http\Controllers\Controller;
+use App\Models\Driver;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class DriverController extends Controller
 {
@@ -15,8 +17,26 @@ class DriverController extends Controller
     public function index()
     {
         return view('driver.dashboard.index', [
-            "title" => "Dashboard Driver"
+            "title" => "Dashboard Driver",
+            "driver" => Driver::where('user_id', Auth::user()->id)->first()
         ]);
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function updateDriverStatus($id)
+    {
+        if (Driver::where('user_id', $id)->first()->ride_status === 1) {
+            $update = array('ride_status' => 0);
+        } else {
+            $update = array('ride_status' => 1);
+        }
+        Driver::where('user_id', $id)->update($update);
+        return;
     }
 
     /**

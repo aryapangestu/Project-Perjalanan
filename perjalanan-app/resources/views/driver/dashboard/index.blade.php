@@ -12,6 +12,9 @@
     </div><!-- End Page Title -->
 
     <section class="section dashboard">
+        <div class="alert alert-success" id="alertStatusDriver" style="display:none;">
+            Driver status updated successfully!
+        </div>
         <div class="row">
 
             <!-- Left side columns -->
@@ -72,21 +75,38 @@
                                         <i class="bi bi-info"></i>
                                     </div>
                                     <div class="ps-3">
-                                        <span class="badge bg-success">ON</span>
                                         <div class="form-check form-switch">
-                                            <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked"
-                                                checked="">
+                                            <input class="form-check-input form-check-label" type="checkbox"
+                                                onclick="ubahStatus({{ $driver->user_id }})"
+                                                {{ $driver->ride_status === 1 ? 'checked = ""' : '' }}>
                                         </div>
                                     </div>
                                 </div>
+
                             </div>
+                        </div><!-- End Sales Card -->
 
-                        </div>
-                    </div><!-- End Sales Card -->
+                    </div>
+                </div><!-- End Left side columns -->
 
-                </div>
-            </div><!-- End Left side columns -->
-
-        </div>
+            </div>
     </section>
+    <script>
+        function ubahStatus(id) {
+            $.ajax({
+                type: 'POST',
+                url: '/driver/status/' + id,
+                data: {
+                    user_id: id
+                },
+                success: function() {
+                    $('#alertStatusDriver').fadeOut();
+                    $('#alertStatusDriver').fadeIn();
+                    setTimeout(function() {
+                        $('#alertStatusDrivers').fadeOut();
+                    }, 5000);
+                }
+            });
+        }
+    </script>
 @endsection
