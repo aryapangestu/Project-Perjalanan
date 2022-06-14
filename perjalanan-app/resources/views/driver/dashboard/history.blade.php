@@ -31,7 +31,7 @@
                                     <th scope="col">Durasi</th>
                                     <th scope="col">Jarak</th>
                                     <th scope="col">Biaya</th>
-                                    <th scope="col">Action</th>
+                                    <th scope="col">Ulasan</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -72,13 +72,33 @@
                                         <td id='jarak{{ $history->id }}'></td>
                                         <td id='biaya{{ $history->id }}'></td>
                                         <td>
-                                            <form action="/driver/history/{{ $history->id }}" method="post">
-                                                @csrf
-                                                <button type="submit" class="btn btn-success" style="margin-top: 2px"
-                                                    {{ $history->review_id == null ? 'disabled' : '' }}>
-                                                    Lihat ulasan
-                                                </button>
-                                            </form>
+                                            @if ($history->review_id != null)
+                                                <div class="d-flex align-items-start flex-column">
+                                                    <div>
+                                                        <label>
+                                                            @for ($i = 0; $i < $history->review->rate; $i++)
+                                                                <span class="icon"
+                                                                    style="color:darkorange">★</span>
+                                                            @endfor
+                                                            @for ($i = 0; $i < 5 - $history->review->rate; $i++)
+                                                                <span class="icon">★</span>
+                                                            @endfor
+                                                        </label>
+                                                    </div>
+                                                    <div>
+                                                        <span
+                                                            class="text-muted small pt-2 ps-1">{{ $history->review->review }}
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            @else
+                                                <div>
+                                                    <span class="text-danger small pt-2 ps-1">Ulasan belum
+                                                        dimasukkan
+                                                        penumpang
+                                                    </span>
+                                                </div>
+                                            @endif
                                         </td>
                                         </td>
                                     </tr>

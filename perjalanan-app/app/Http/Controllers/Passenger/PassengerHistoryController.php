@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Passenger;
 
 use App\Http\Controllers\Controller;
+use App\Models\Review;
 use App\Models\Ride;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -22,6 +23,25 @@ class PassengerHistoryController extends Controller
                 ->where('status', 1)
                 ->get()
         ]);
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function storeUlasan(Request $request, $id)
+    {
+        $validated = $request->validate([
+            'rate' => 'required',
+            'review' => 'required',
+        ]);
+        $review = Review::create($validated);
+
+        $temp['review_id'] = $review->id;
+        Ride::where('id', $id)->update($temp);
+        return redirect('/passenger/history')->with('alert', 'Ulasan berhasil ditambahkan!');
     }
 
     /**
