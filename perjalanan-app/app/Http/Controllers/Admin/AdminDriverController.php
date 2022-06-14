@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Driver;
+use App\Models\Ride;
 
 class AdminDriverController extends Controller
 {
@@ -18,7 +19,8 @@ class AdminDriverController extends Controller
     {
         return view('admin.dashboard.list-pengemudi', [
             "title" => "List-pengemudi Admin",
-            "users" => User::all()
+            "users" => User::all(),
+            "rides" => Ride::all()
         ]);
     }
 

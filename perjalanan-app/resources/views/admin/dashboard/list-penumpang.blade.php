@@ -40,7 +40,7 @@
                                             <th scope="row">{{ $user->id }}</th>
                                             <td>{{ $user->name }}</td>
                                             <td>{{ $user->email }}</td>
-                                            <td>{{ $user->passenger->total_rides ?? 'None' }}</td>
+                                            <td>{{ $rides->where('passenger_id', $user->id)->count() }}</td>
                                             <td>
                                                 <div class="form-check form-switch">
                                                     <input class="form-check-input" type="checkbox"

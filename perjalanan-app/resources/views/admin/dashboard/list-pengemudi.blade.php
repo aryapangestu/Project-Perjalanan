@@ -42,7 +42,7 @@
                                         <td>{{ $user->name }}</td>
                                         <td>{{ $user->email }}</td>
                                         <td>{{ $user->driver->vehicle->vehicle_type }}</td>
-                                        <td>{{ $user->driver->total_rides ?? 'None' }}</td>
+                                        <td>{{ $rides->where('driver_id', $user->id)->count() }}</td>
                                         <td>
                                             <div class="form-check form-switch">
                                                 <input class="form-check-input" type="checkbox"
@@ -55,11 +55,10 @@
                                                 data-bs-target="#modalview{{ $user->id }}">
                                                 View
                                             </button>
-
                                             <!-- Modal -->
                                             <div class="modal fade" id="modalview{{ $user->id }}" tabindex="-1"
                                                 aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                <div class="modal-dialog">
+                                                <div class="modal-dialog modal-xl">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
                                                             <h5 class="modal-title" id="exampleModalLabel">Info Pengemudi
@@ -68,13 +67,33 @@
                                                                 data-bs-dismiss="modal" aria-label="Close"></button>
                                                         </div>
                                                         <div class="modal-body">
-                                                            Info
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <button type="button" class="btn btn-secondary"
-                                                                data-bs-dismiss="modal">Close</button>
-                                                            <button type="button" class="btn btn-primary">Save
-                                                                changes</button>
+                                                            <div>
+
+                                                                <table class="table table-bordered">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th scope="col">Nama passenger</th>
+                                                                            <th scope="col">Rute</th>
+                                                                            <th scope="col">Durasi</th>
+                                                                            <th scope="col">Jarak</th>
+                                                                            <th scope="col">Biaya</th>
+                                                                            <th scope="col">Ulasan</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                            @foreach ($rides->where('driver_id', $user->id)->where('status', 1) as $history)
+                                                                                <tr>
+                                                                                    <td>{{ $history->passenger->user->name }}</td>
+                                                                                    <td>{{ $history->passenger->user->name }}</td>
+                                                                                    <td>Natto</td>
+                                                                                    <td>@samso</td>
+                                                                                    <td>Natto</td>
+                                                                                    <td>Natto</td>
+                                                                                </tr>
+                                                                            @endforeach
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>

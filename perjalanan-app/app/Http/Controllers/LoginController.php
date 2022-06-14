@@ -39,11 +39,11 @@ class LoginController extends Controller
             $request->session()->regenerate();
 
             // Simpan nama route sesuai role user
-            if (Auth::user()->role == 0) {
+            if (Auth::user()->role == 0 && Auth::user()->status == 1) {
                 $temp = '/dashboard';
-            } else if (Auth::user()->role == 1) {
+            } else if (Auth::user()->role == 1 && Auth::user()->status == 1) {
                 $temp = '/passenger';
-            } else if (Auth::user()->role == 2) {
+            } else if (Auth::user()->role == 2 && Auth::user()->status == 1) {
                 $temp = '/driver';
             } else {
                 $temp = '';

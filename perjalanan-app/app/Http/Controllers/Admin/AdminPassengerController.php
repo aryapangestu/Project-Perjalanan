@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Passenger;
+use App\Models\Ride;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -18,7 +19,8 @@ class AdminPassengerController extends Controller
     {
         return view('admin.dashboard.list-penumpang', [
             "title" => "List-penumpang Admin",
-            "users" => User::all()
+            "users" => User::all(),
+            "rides" => Ride::all()
         ]);
     }
 

@@ -18,7 +18,6 @@ return new class extends Migration
             $table->unsignedBigInteger('vehicle_id'); // Membuat Kolom 'vehicle_id'
             $table->integer('earnings',)->default('0'); // Membuat Kolom 'earnings' dan nilai awal '0'
             $table->boolean('ride_status')->default('0'); // Membuat Kolom 'ride_status' dan nilai awal '0'
-            $table->integer('total_rides',)->default('0'); // Membuat Kolom 'total_rides' dan nilai awal '0'
             $table->timestamps(); // membuat kolom waktu
 
             $table->foreign('user_id')->references('id')->on('users'); // membuat Foreign Key
