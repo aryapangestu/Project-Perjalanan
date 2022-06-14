@@ -33,9 +33,9 @@
                                         <i class="bi bi-calculator-fill"></i>
                                     </div>
                                     <div class="ps-3">
-                                        <p>Jenis: Mobil</p>
-                                        <p>Model: Toyota Kijang Innova</p>
-                                        <p>Plat: BG 1569 HI</p>
+                                        <p>Jenis: {{ $driver->vehicle->vehicle_type }}</p>
+                                        <p>Model: {{ $driver->vehicle->model }}</p>
+                                        <p>Plat: {{ $driver->vehicle->plat }}</p>
                                     </div>
                                 </div>
                             </div>
@@ -55,7 +55,7 @@
                                         <i class="bi bi-currency-dollar"></i>
                                     </div>
                                     <div class="ps-3">
-                                        <h6>145</h6>
+                                        <h6>{{ $total_ride }}</h6>
                                     </div>
                                 </div>
                             </div>

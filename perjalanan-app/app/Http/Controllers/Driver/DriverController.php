@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Driver;
 
 use App\Http\Controllers\Controller;
 use App\Models\Driver;
+use App\Models\Ride;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -18,7 +19,8 @@ class DriverController extends Controller
     {
         return view('driver.dashboard.index', [
             "title" => "Dashboard Driver",
-            "driver" => Driver::where('user_id', Auth::user()->id)->first()
+            "driver" => Driver::where('user_id', Auth::user()->id)->first(),
+            "total_ride" => Ride::all()->where('driver_id', Auth::user()->id)->count(),
         ]);
     }
 
