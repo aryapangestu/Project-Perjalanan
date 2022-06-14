@@ -17,10 +17,15 @@ class VehicleFactory extends Factory
      */
     public function definition()
     {
+        if ($this->faker->boolean() == 0) {
+            $temp = 'Mobil';
+        } else {
+            $temp = 'Motor';
+        }
         return [
             'model' => $this->faker->name,
             'plat' => $this->faker->unique()->bothify('?? #### ??'),
-            'jenis' => $this->faker->boolean()
+            'vehicle_type' => $temp
         ];
     }
 }

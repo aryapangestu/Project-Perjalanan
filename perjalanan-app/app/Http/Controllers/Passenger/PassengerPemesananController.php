@@ -63,7 +63,7 @@ class PassengerPemesananController extends Controller
 
         $payment['ride_id'] = $ride->id;
         Payment::create($payment);
-        return redirect('/passenger/pemesanan')->with('alert', 'Pesanan berhasil ditambahkan, Silakan tunggu driver Anda');
+        return redirect('/passenger/perjalanan')->with('alert', 'Pesanan berhasil ditambahkan, Silakan tunggu driver Anda');
     }
 
     /**

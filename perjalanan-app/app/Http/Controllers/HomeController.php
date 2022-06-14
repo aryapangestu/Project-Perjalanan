@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Driver;
+use App\Models\Ride;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -25,13 +27,15 @@ class HomeController extends Controller
 
         if (Auth::user()->role == 1) {
             return view('passenger.dashboard.index', [
-                "title" => "Dashboard Passenger"
+                "title" => "Dashboard Passenger",
+                "total_ride" => Ride::all()->where('passenger_id', Auth::user()->id)->count(),
             ]);
         }
 
         if (Auth::user()->role == 2) {
             return view('driver.dashboard.index', [
-                "title" => "Dashboard Driver"
+                "title" => "Dashboard Driver",
+                "driver" => Driver::where('user_id', Auth::user()->id)->first()
             ]);
         }
     }

@@ -703,6 +703,10 @@ h6 {
     min-height: 40rem;
 }
 
+#mapNew {
+    min-height: 35rem;
+}
+
 .mapboxgl-canvas {
     margin-left: 0.8rem;
     right: 0.8rem;

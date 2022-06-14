@@ -31,7 +31,7 @@
                                         <div class="row mb-3">
                                             <div class="col-sm-2 label ">Jenis kendaraan</div>
                                             <div class="col-sm-10">
-                                                {{ $ride->driver->vehicle->jenis == 0 ? 'Motor' : 'Mobil' }}</div>
+                                                {{ $ride->driver->vehicle->vehicle_type }}</div>
                                         </div>
                                         <div class="row mb-3">
                                             <div class="col-sm-2 label ">Model kendaraan</div>

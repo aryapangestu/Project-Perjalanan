@@ -66,6 +66,8 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/driver', [DriverController::class, 'index']);
         Route::post('/driver/status/{id}', [DriverController::class, 'updateDriverStatus']);
         Route::get('/driver/perjalanan', [DriverPerjalananController::class, 'index']);
+        Route::put('/driver/perjalanan/{id}', [DriverPerjalananController::class, 'updateRideDriver']);
+        Route::put('/driver/perjalanan/selesai/{id}', [DriverPerjalananController::class, 'updateRideStatus']);
         Route::get('/driver/history', [DriverHistoryController::class, 'index']);
     });
 });

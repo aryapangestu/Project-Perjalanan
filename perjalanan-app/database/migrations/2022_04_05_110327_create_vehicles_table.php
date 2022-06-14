@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id(); // Membuat kolom 'id'
             $table->string('model',); // MEmbuat kolom 'model'
             $table->string('plat'); // Membuat kolom 'plat'
-            $table->boolean('jenis'); // Memebuat kolom 'jenis'
+            $table->string('vehicle_type'); // Memebuat kolom 'jenis'
             $table->timestamps(); // membuat kolom waktu
         });
     }
