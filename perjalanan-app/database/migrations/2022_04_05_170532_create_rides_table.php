@@ -23,10 +23,12 @@ return new class extends Migration
             $table->double('drop_to_latitude', 15, 8); // membuat kolom 'drop_up form latitude'
             $table->double('drop_to_longitude', 15, 8); // membuat kolom 'drop_up form longitude'
             $table->integer('status')->default(0);
+            $table->unsignedBigInteger('review_id')->nullable();
             $table->timestamps(); // membuat kolom waktu
 
             $table->foreign('driver_id')->references('user_id')->on('drivers'); // membuat foreign key
             $table->foreign('passenger_id')->references('user_id')->on('passengers'); // membuat foreign key
+            $table->foreign('review_id')->references('id')->on('reviews');  // membuat foreign key
         });
     }
 
