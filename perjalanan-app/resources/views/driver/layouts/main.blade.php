@@ -23,6 +23,10 @@
     <!-- Template Main CSS File -->
     <link href="{{ URL::asset('assets/css/style.css') }}" rel="stylesheet">
 
+    <!-- Mapbox -->
+    <link href="https://api.mapbox.com/mapbox-gl-js/v2.8.2/mapbox-gl.css" rel="stylesheet">
+    <script src="https://api.mapbox.com/mapbox-gl-js/v2.8.2/mapbox-gl.js"></script>
+
 </head>
 
 <body>

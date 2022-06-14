@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Driver;
 
 use App\Http\Controllers\Controller;
+use App\Models\Ride;
 use Illuminate\Http\Request;
 
 class DriverPerjalananController extends Controller
@@ -15,7 +16,8 @@ class DriverPerjalananController extends Controller
     public function index()
     {
         return view('driver.dashboard.perjalanan', [
-            "title" => "Perjalanan Driver"
+            "title" => "Perjalanan Driver",
+            "rides" => Ride::all()
         ]);
     }
 

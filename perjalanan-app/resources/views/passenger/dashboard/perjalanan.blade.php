@@ -132,8 +132,6 @@
                 style: 'mapbox://styles/mapbox/streets-v11',
                 center: [107.60340, -6.93487],
                 zoom: 12,
-                setOrigin: [106.80000000, -6.16667000],
-                setDestination: [107.60340, -6.93487],
             });
             if (ride.vehicle_type == 'Mobil') {
                 temp = 'mapbox/driving';
@@ -154,10 +152,11 @@
             });
             map.addControl(directions, 'top-left');
             map.on('load', function() {
-                directions.setOrigin([106.80000000, -6.16667000]);
-                directions.setDestination([107.56667000, -6.95000000]);
+                directions.setOrigin([ride.pick_up_form_longitude, ride.pick_up_form_latitude]);
+                directions.setDestination([ride.drop_to_longitude, ride.drop_to_latitude]);
                 directions.on('route', (event) => {
                     seconds = event.route[0].duration;
+                    distance = event.route[0].distance;
 
                     durasi.innerHTML = secondsToDhms(seconds);
                     biaya.innerHTML = formatter.format(payment.amount);

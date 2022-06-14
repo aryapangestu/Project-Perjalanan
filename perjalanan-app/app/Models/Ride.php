@@ -15,6 +15,11 @@ class Ride extends Model
         return $this->belongsTo(Driver::class, 'driver_id', 'user_id');
     }
 
+    public function passenger()
+    {
+        return $this->belongsTo(Passenger::class, 'passenger_id', 'user_id');
+    }
+
     public function payment()
     {
         return $this->hasOne(Payment::class);
