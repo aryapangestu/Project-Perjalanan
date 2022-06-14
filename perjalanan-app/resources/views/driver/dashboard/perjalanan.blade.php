@@ -65,7 +65,7 @@
                                                                         data-bs-dismiss="modal" aria-label="Close"></button>
                                                                 </div>
                                                                 <div class="modal-body" id="mapNew">
-                                                                    <div id="mapNew"></div>
+                                                                    <div class="mapNew" id="mapNew"></div>
                                                                 </div>
                                                             </div>
                                                         </div>

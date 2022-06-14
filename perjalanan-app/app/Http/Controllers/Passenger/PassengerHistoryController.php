@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Passenger;
 
 use App\Http\Controllers\Controller;
+use App\Models\Ride;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PassengerHistoryController extends Controller
 {
@@ -15,7 +17,10 @@ class PassengerHistoryController extends Controller
     public function index()
     {
         return view('passenger.dashboard.history', [
-            "title" => "History Passenger"
+            "title" => "History Passenger",
+            "histories" => Ride::where('passenger_id', Auth::user()->id)
+                ->where('status', 1)
+                ->get()
         ]);
     }
 

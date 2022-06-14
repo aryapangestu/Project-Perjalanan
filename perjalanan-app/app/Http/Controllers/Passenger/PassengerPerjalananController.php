@@ -16,10 +16,16 @@ class PassengerPerjalananController extends Controller
      */
     public function index()
     {
-        if (Ride::where('passenger_id', Auth::user()->id)->first() == null) {
+        if (
+            Ride::where('passenger_id', Auth::user()->id)
+            ->where('status', 0)
+            ->first() == null
+        ) {
             $temp =  null;
         } else {
-            $temp =  Ride::where('passenger_id', Auth::user()->id)->first();
+            $temp =  Ride::where('passenger_id', Auth::user()->id)
+                ->where('status', 0)
+                ->first();
         }
         return view('passenger.dashboard.perjalanan', [
             "title" => "Perjalanan Passenger",

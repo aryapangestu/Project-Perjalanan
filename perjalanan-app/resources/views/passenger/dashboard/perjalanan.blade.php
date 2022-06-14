@@ -67,25 +67,6 @@
                                         <div class="col-sm-10" id='biaya'>Rp 0,00</div>
                                     </div>
 
-                                    @if ($ride->driver_id == null)
-                                        <div class="row mb-3">
-                                            <div class="col-sm-2 label "></div>
-                                            <label class="col-sm-10"> Mencari driver terlebih dahulu... </label>
-                                        </div>
-                                    @elseif ($ride->payment->status == 0)
-                                        <div class="row mb-3">
-                                            <div class="col-sm-2 label "></div>
-                                            <label class="col-sm-10"> Bayar terlebih dahulu </label>
-                                        </div>
-                                    @endif
-                                    <div class="row mb-3">
-                                        <label class="col-sm-2 col-form-label"></label>
-                                        <div class="col-sm-10">
-                                            <button type="submit" class="btn btn-primary"
-                                                {{ $ride->driver_id == null ? 'disabled' : '' }}>Selesai</button>
-                                        </div>
-                                    </div>
-
                                 </form><!-- End General Form Elements -->
                             @elseif ($ride->status == '1')
                                 <div class="container">
