@@ -50,7 +50,9 @@ Route::middleware(['auth'])->group(function () {
     Route::middleware(['checkRole:0'])->group(function () {
         Route::get('/dashboard', [AdminController::class, 'index']);
         Route::get('/list-pengemudi', [AdminDriverController::class, 'index']);
+        Route::post('/list-pengemudi/status/{id}', [AdminDriverController::class, 'updateDriverStatus']);
         Route::get('/list-penumpang', [AdminPassengerController::class, 'index']);
+        Route::post('/list-penumpang/status/{id}', [AdminPassengerController::class, 'updatepassengerStatus']);
     });
 
     Route::middleware(['checkRole:1'])->group(function () {
