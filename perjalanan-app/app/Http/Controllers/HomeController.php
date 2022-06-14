@@ -35,7 +35,8 @@ class HomeController extends Controller
         if (Auth::user()->role == 2) {
             return view('driver.dashboard.index', [
                 "title" => "Dashboard Driver",
-                "driver" => Driver::where('user_id', Auth::user()->id)->first()
+                "driver" => Driver::where('user_id', Auth::user()->id)->first(),
+                "total_ride" => Ride::all()->where('driver_id', Auth::user()->id)->count(),
             ]);
         }
     }
