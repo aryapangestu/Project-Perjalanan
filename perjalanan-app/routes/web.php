@@ -42,7 +42,8 @@ Route::post('/logout', [LoginController::class, 'logout']);
 
 // Register
 Route::get('/register', [RegisterController::class, 'index'])->middleware('guest');
-Route::post('/register', [RegisterController::class, 'store']);
+Route::post('/register/passenger', [RegisterController::class, 'storePassenger']);
+Route::post('/register/driver', [RegisterController::class, 'storeDriver']);
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/', [HomeController::class, 'index']);

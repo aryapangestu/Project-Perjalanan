@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Passenger;
 
 use App\Http\Controllers\Controller;
-use App\Models\Payment;
 use App\Models\Ride;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -55,14 +54,10 @@ class PassengerPemesananController extends Controller
             'drop_to_longitude' => 'required',
             'amount' => 'required',
         ]);
-        $payment['amount'] = $validated['amount'];
-        unset($validated['amount']);
         $validated['passenger_id'] = Auth::user()->id;
 
-        $ride = Ride::create($validated);
+        Ride::create($validated);
 
-        $payment['ride_id'] = $ride->id;
-        Payment::create($payment);
         return redirect('/passenger/perjalanan')->with('alert', 'Pesanan berhasil ditambahkan, Silakan tunggu driver Anda');
     }
 

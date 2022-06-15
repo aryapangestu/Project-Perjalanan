@@ -22,6 +22,7 @@ return new class extends Migration
             $table->double('pick_up_form_longitude', 15, 8); // membuat kolom 'pick_up form longitude'
             $table->double('drop_to_latitude', 15, 8); // membuat kolom 'drop_up form latitude'
             $table->double('drop_to_longitude', 15, 8); // membuat kolom 'drop_up form longitude'
+            $table->integer('amount'); // membuat kolom 'amount'
             $table->integer('status')->default(0);
             $table->unsignedBigInteger('review_id')->nullable();
             $table->timestamps(); // membuat kolom waktu

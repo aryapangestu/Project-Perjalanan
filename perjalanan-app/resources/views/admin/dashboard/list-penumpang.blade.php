@@ -171,12 +171,11 @@
                                                                                         currency: 'IDR',
                                                                                     });
                                                                                     var ride = {!! json_encode($history->toArray()) !!};
-                                                                                    var payment = {!! json_encode($history->payment->toArray()) !!};
 
                                                                                     biaya = document.getElementById('biaya' + ride.id.toString());
                                                                                     jarak = document.getElementById('jarak' + ride.id.toString());
                                                                                     durasi = document.getElementById('durasi' + ride.id.toString());
-                                                                                    biaya.innerHTML = formatter.format(payment.amount);
+                                                                                    biaya.innerHTML = formatter.format(ride.amount);
 
                                                                                     mapboxgl.accessToken = 'pk.eyJ1IjoiYXJ5YXAyIiwiYSI6ImNsMXU1MmJ3NjJpemQzcXVrNnQ3cDFibmEifQ.WtmVOqIR6MWhE9HNjQpPkw';
                                                                                     map = new mapboxgl.Map({
@@ -210,7 +209,7 @@
                                                                                             distance = event.route[0].distance;
 
                                                                                             durasi.innerHTML = secondsToDhms(seconds);
-                                                                                            biaya.innerHTML = formatter.format(payment.amount);
+                                                                                            biaya.innerHTML = formatter.format(ride.amount);
 
                                                                                             // lebih dari 500 meter, maka print KM saja
                                                                                             if (distance > 500) {

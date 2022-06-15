@@ -101,7 +101,6 @@
                 currency: 'IDR',
             });
             var ride = {!! json_encode($ride->toArray()) !!};
-            var payment = {!! json_encode($ride->payment->toArray()) !!};
 
             const durasi = document.getElementById('durasi');
             const jarak = document.getElementById('jarak');
@@ -140,7 +139,7 @@
                     distance = event.route[0].distance;
 
                     durasi.innerHTML = secondsToDhms(seconds);
-                    biaya.innerHTML = formatter.format(payment.amount);
+                    biaya.innerHTML = formatter.format(ride.amount);
 
                     // lebih dari 500 meter, maka print KM saja
                     if (distance > 500) {

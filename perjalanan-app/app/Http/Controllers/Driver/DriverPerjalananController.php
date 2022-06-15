@@ -49,8 +49,6 @@ class DriverPerjalananController extends Controller
         $update = array('status' => 1);
         Ride::where('id', $id)->update($update);
 
-        // TODO: update status payment
-
         return redirect('/driver/perjalanan')->with('alert', 'Selamat Anda telah menyelesaikan perjalanan');
     }
 
