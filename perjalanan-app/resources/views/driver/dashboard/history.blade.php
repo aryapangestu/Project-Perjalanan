@@ -100,7 +100,6 @@
                                                 </div>
                                             @endif
                                         </td>
-                                        </td>
                                     </tr>
                                     <script>
                                         // format int ke currency indonesia
