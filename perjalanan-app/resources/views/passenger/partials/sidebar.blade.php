@@ -26,9 +26,9 @@
         </li><!-- End Tables Page Nav -->
 
         <li class="nav-item">
-            <a class="nav-link {{ $title === 'History Passenger' ? '' : 'collapsed' }}" href="/passenger/history">
+            <a class="nav-link {{ $title === 'Riwayat Passenger' ? '' : 'collapsed' }}" href="/passenger/history">
                 <i class="bi bi-layout-text-window-reverse"></i>
-                <span>History</span>
+                <span>Riwayat</span>
             </a>
         </li><!-- End Tables Page Nav -->
 </aside><!-- End Sidebar-->

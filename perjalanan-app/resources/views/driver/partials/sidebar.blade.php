@@ -18,9 +18,9 @@
         </li><!-- End Tables Page Nav -->
 
         <li class="nav-item">
-            <a class="nav-link {{ $title === 'History Driver' ? '' : 'collapsed' }}" href="/driver/history">
+            <a class="nav-link {{ $title === 'Riwayat Driver' ? '' : 'collapsed' }}" href="/driver/history">
                 <i class="bi bi-journal-text"></i>
-                <span>History</span>
+                <span>Riwayat</span>
             </a>
         </li><!-- End Tables Page Nav -->
 </aside><!-- End Sidebar-->

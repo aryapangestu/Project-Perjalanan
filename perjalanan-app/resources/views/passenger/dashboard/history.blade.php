@@ -2,11 +2,11 @@
 
 @section('main')
     <div class="pagetitle">
-        <h1>History Perjalanan</h1>
+        <h1>Riwayat Perjalanan</h1>
         <nav>
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                <li class="breadcrumb-item active">History Perjalanan</li>
+                <li class="breadcrumb-item"><a href='/'>Home</a></li>
+                <li class="breadcrumb-item active">Riwayat Perjalanan</li>
             </ol>
         </nav>
     </div><!-- End Page Title -->
@@ -17,8 +17,8 @@
 
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">History</h5>
-                        <p>Berikut Daftar History Perjalanan Anda </p>
+                        <h5 class="card-title">Riwayat</h5>
+                        <p>Berikut Daftar Riwayat Perjalanan Anda </p>
 
                         <!-- Table with stripped rows -->
                         <table class="table datatable">

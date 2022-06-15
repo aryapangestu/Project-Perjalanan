@@ -18,7 +18,7 @@ class PassengerHistoryController extends Controller
     public function index()
     {
         return view('passenger.dashboard.history', [
-            "title" => "History Passenger",
+            "title" => "Riwayat Passenger",
             "histories" => Ride::where('passenger_id', Auth::user()->id)
                 ->where('status', 1)
                 ->get()

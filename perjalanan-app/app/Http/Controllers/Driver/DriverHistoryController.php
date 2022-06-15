@@ -18,7 +18,7 @@ class DriverHistoryController extends Controller
     public function index()
     {
         return view('driver.dashboard.history', [
-            "title" => "History Driver",
+            "title" => "Riwayat Driver",
             "histories" => Ride::where('driver_id', Auth::user()->id)
                 ->where('status', 1)
                 ->get()
