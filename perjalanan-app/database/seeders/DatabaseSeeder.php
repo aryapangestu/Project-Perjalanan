@@ -35,11 +35,25 @@ class DatabaseSeeder extends Seeder // memanggil fungsi Seeder
         $train = new TrainBuilder(10);
         $train->addPassengers()->addDrivers();
 
-        User::create([ //membuat detail isi table
-            'name' => 'admin',
-            'email' => 'admin@gmail.com',
-            'password' => Hash::make('admin'),
+        User::create([
+            'name' => 'Test User Admin',
+            'email' => 'testadmin@example.com',
+            'password' => Hash::make('password'),
             'role' => 0
+        ]);
+
+        User::create([
+            'name' => 'Test User Passenger',
+            'email' => 'testpassenger@example.com',
+            'password' => Hash::make('password'),
+            'role' => 1
+        ]);
+
+        User::create([
+            'name' => 'Test User Driver',
+            'email' => 'testdriver@example.com',
+            'password' => Hash::make('password'),
+            'role' => 2
         ]);
     }
 }
