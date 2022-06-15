@@ -42,18 +42,20 @@ class DatabaseSeeder extends Seeder // memanggil fungsi Seeder
             'role' => 0
         ]);
 
-        User::create([
+        $temp = User::create([
             'name' => 'Test User Passenger',
             'email' => 'testpassenger@example.com',
             'password' => Hash::make('password'),
             'role' => 1
         ]);
+        Passenger::create(['user_id' => $temp->id]);
 
-        User::create([
+        $temp = User::create([
             'name' => 'Test User Driver',
             'email' => 'testdriver@example.com',
             'password' => Hash::make('password'),
             'role' => 2
         ]);
+        Driver::create(['user_id' => $temp->id, 'vehicle_id' => Vehicle::all(['id'])->random()['id']]);
     }
 }
