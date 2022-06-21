@@ -29,7 +29,7 @@ class DriverHistoryController extends Controller
     {
         return view('driver.dashboard.viewHistory', [
             "title" => "Riwayat Driver",
-            "ride" => Ride::where('id', $id)->get()
+            "ride" => Ride::where('id', $id)->first()
         ]);
     }
 

@@ -63,7 +63,6 @@
             currency: 'IDR',
         });
         var ride = {!! json_encode($ride->toArray()) !!};
-        ride = ride[0]
 
         const biaya = document.getElementById('biaya');
         const jarak = document.getElementById('jarak');

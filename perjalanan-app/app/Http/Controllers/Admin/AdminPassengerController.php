@@ -24,6 +24,22 @@ class AdminPassengerController extends Controller
         ]);
     }
 
+    public function showDetail($id)
+    {
+        return view('admin.dashboard.detailList-penumpang', [
+            "title" => "List-penumpang Admin",
+            "rides" => Ride::where('passenger_id', $id)->where('status', 1)->get()
+        ]);
+    }
+
+    public function showView($id)
+    {
+        return view('admin.dashboard.viewList-penumpang', [
+            "title" => "List-penumpang Admin",
+            "ride" => Ride::where('id', $id)->first()
+        ]);
+    }
+
     public function updatepassengerStatus($id)
     {
         if (User::where('id', $id)->first()->status === 1) {

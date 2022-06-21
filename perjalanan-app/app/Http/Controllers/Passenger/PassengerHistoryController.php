@@ -29,7 +29,7 @@ class PassengerHistoryController extends Controller
     {
         return view('passenger.dashboard.viewHistory', [
             "title" => "Riwayat Passenger",
-            "ride" => Ride::where('id', $id)->get()
+            "ride" => Ride::where('id', $id)->first()
         ]);
     }
 

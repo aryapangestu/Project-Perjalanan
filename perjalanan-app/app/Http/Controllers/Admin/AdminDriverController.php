@@ -24,6 +24,22 @@ class AdminDriverController extends Controller
         ]);
     }
 
+    public function showDetail($id)
+    {
+        return view('admin.dashboard.detailList-pengemudi', [
+            "title" => "List-pengemudi Admin",
+            "rides" => Ride::where('driver_id', $id)->where('status', 1)->get()
+        ]);
+    }
+
+    public function showView($id)
+    {
+        return view('admin.dashboard.viewList-pengemudi', [
+            "title" => "List-pengemudi Admin",
+            "ride" => Ride::where('id', $id)->first()
+        ]);
+    }
+
     public function updateDriverStatus($id)
     {
         if (User::where('id', $id)->first()->status === 1) {

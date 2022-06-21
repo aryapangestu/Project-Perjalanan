@@ -35,7 +35,7 @@ class DriverPerjalananController extends Controller
     {
         return view('driver.dashboard.viewPerjalanan', [
             "title" => "Perjalanan Driver",
-            "ride" => Ride::where('id', $id)->get()
+            "ride" => Ride::where('id', $id)->first()
         ]);
     }
 

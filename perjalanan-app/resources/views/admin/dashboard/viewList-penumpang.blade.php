@@ -1,4 +1,4 @@
-@extends('passenger.layouts.main')
+@extends('admin.layouts.main')
 
 @section('main')
     <div class="pagetitle">
@@ -6,7 +6,9 @@
         <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href='/'>Home</a></li>
-                <li class="breadcrumb-item"><a href='/passenger/history'>History</a></li>
+                <li class="breadcrumb-item active"><a href='/list-penumpang'>Data Pengemudi</a></li>
+                <li class="breadcrumb-item active"><a href='/list-penumpang/detail/{{ $ride->passenger_id }}'>Detail</a>
+                </li>
                 <li class="breadcrumb-item active">View</li>
             </ol>
         </nav>
