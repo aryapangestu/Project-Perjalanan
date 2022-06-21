@@ -60,6 +60,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/passenger', [PassengerController::class, 'index']);
         Route::get('/passenger/perjalanan', [PassengerPerjalananController::class, 'index']);
         Route::get('/passenger/history', [PassengerHistoryController::class, 'index']);
+        Route::get('/passenger/history/{id}', [PassengerHistoryController::class, 'showView']);
         Route::post('/passenger/history/{id}', [PassengerHistoryController::class, 'storeUlasan']);
         Route::get('/passenger/pemesanan', [PassengerPemesananController::class, 'index']);
         Route::post('/passenger/pemesanan', [PassengerPemesananController::class, 'store']);

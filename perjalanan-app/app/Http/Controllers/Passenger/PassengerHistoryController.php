@@ -25,6 +25,14 @@ class PassengerHistoryController extends Controller
         ]);
     }
 
+    public function showView($id)
+    {
+        return view('passenger.dashboard.viewHistory', [
+            "title" => "Riwayat Passenger",
+            "ride" => Ride::where('id', $id)->get()
+        ]);
+    }
+
     /**
      * Display the specified resource.
      *
