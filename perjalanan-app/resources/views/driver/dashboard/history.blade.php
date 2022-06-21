@@ -28,8 +28,6 @@
                                 <tr>
                                     <th scope="col">Nama passenger</th>
                                     <th scope="col">Rute</th>
-                                    <th scope="col">Durasi</th>
-                                    <th scope="col">Jarak</th>
                                     <th scope="col">Biaya</th>
                                     <th scope="col">Ulasan</th>
                                 </tr>
@@ -43,33 +41,9 @@
                                             href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v4.1.0/mapbox-gl-directions.css"
                                             type="text/css">
                                         <td>
-                                            <!-- Button trigger modal -->
-                                            <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                                data-bs-target="#modalview{{ $history->id }}">
-                                                View
-                                            </button>
-
-                                            <!-- Modal -->
-                                            <div class="modal fade" id="modalview{{ $history->id }}" tabindex="-1"
-                                                aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                <div class="modal-dialog modal-lg modal-dialog-centered">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h5 class="modal-title" id="exampleModalLabel">Rute
-                                                            </h5>
-                                                            <button type="button" class="btn-close"
-                                                                data-bs-dismiss="modal" aria-label="Close"></button>
-                                                        </div>
-                                                        <div class="modal-body">
-                                                            <div class="mapNew" id="mapNew{{ $history->id }}">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                            <a href="/driver/history/{{ $history->id }}" class="btn btn-info"
+                                                style="margin-right:2px">View</a>
                                         </td>
-                                        <td id='durasi{{ $history->id }}'></td>
-                                        <td id='jarak{{ $history->id }}'></td>
                                         <td id='biaya{{ $history->id }}'></td>
                                         <td>
                                             @if ($history->review_id != null)
@@ -77,8 +51,7 @@
                                                     <div>
                                                         <label>
                                                             @for ($i = 0; $i < $history->review->rate; $i++)
-                                                                <span class="icon"
-                                                                    style="color:darkorange">★</span>
+                                                                <span class="icon" style="color:darkorange">★</span>
                                                             @endfor
                                                             @for ($i = 0; $i < 5 - $history->review->rate; $i++)
                                                                 <span class="icon">★</span>

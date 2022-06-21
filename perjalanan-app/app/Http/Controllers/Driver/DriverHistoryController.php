@@ -25,6 +25,14 @@ class DriverHistoryController extends Controller
         ]);
     }
 
+    public function showView($id)
+    {
+        return view('driver.dashboard.viewHistory', [
+            "title" => "Riwayat Driver",
+            "ride" => Ride::where('id', $id)->get()
+        ]);
+    }
+
     /**
      * Show the form for creating a new resource.
      *
