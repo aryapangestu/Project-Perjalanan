@@ -50,11 +50,20 @@ class RegisterController extends Controller
     {
 
         $validated = $request->validate([
-            'name' => 'required|max:255',
-            'email' => 'required|email|unique:users',
-            'password' => 'required',
-            'terms' => 'required',
+            'name1' => 'required|max:255',
+            'email1' => 'required|email|unique:users',
+            'password1' => 'required',
+            'terms1' => 'required',
         ]);
+        $datVehicle['name'] = $validated['name1'];
+        unset($validated['name1']);
+
+        $datVehicle['email'] = $validated['email1'];
+        unset($validated['email1']);
+
+        $datVehicle['password'] = $validated['password1'];
+        unset($validated['password1']);
+
         $validated['password'] = Hash::make($validated['password']);
         $validated['role'] = 1;
 
@@ -77,7 +86,6 @@ class RegisterController extends Controller
             'plat' => 'required',
         ]);
         $validated['password'] = Hash::make($validated['password']);
-        $validated['role'] = 2;
 
         $datVehicle['vehicle_type'] = $validated['vehicle_type'];
         unset($validated['vehicle_type']);
@@ -90,6 +98,7 @@ class RegisterController extends Controller
 
         $vehicle = Vehicle::create($datVehicle);
 
+        $validated['role'] = 2;
         $user = User::create($validated);
         Driver::create(['user_id' => $user->id, 'vehicle_id' => $vehicle->id]);
 

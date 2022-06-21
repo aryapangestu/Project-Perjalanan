@@ -18,8 +18,8 @@ return new class extends Migration
             $table->string('name'); // MEmbuat kolom 'nama'
             $table->string('email')->unique(); // Membuat kolom 'email'
             $table->string('password'); // Membuat kolom 'password'
-            $table->integer('role',)->default('1'); // Membuat kolom 'role'
-            $table->integer('status',)->default('1'); // Membuat kolom 'status'
+            $table->integer('role'); // Membuat kolom 'role'
+            $table->integer('status')->default('1'); // Membuat kolom 'status'
             $table->timestamps(); // Membuat kolom 'waktu'
         });
     }

@@ -55,20 +55,20 @@
                                                 @csrf
                                                 <div class="col-12">
                                                     <label for="yourName" class="form-label">Your Name</label>
-                                                    <input type="text" name="name"
-                                                        class="form-control @error('name') is-invalid @enderror"
-                                                        id="yourName" required value="{{ old('name') }}">
-                                                    @error('name')
+                                                    <input type="text" name="name1"
+                                                        class="form-control @error('name1') is-invalid @enderror"
+                                                        id="yourName" required value="{{ old('name1') }}">
+                                                    @error('name1')
                                                         <div class="invalid-feedback">Please, enter your name!</div>
                                                     @enderror
                                                 </div>
 
                                                 <div class="col-12">
                                                     <label for="yourEmail" class="form-label">Your Email</label>
-                                                    <input type="email" name="email"
-                                                        class="form-control @error('email') is-invalid @enderror"
-                                                        id="yourEmail" required value="{{ old('email') }}">
-                                                    @error('email')
+                                                    <input type="email" name="email1"
+                                                        class="form-control @error('email1') is-invalid @enderror"
+                                                        id="yourEmail" required value="{{ old('email1') }}">
+                                                    @error('email1')
                                                         <div class="invalid-feedback">Please enter a valid Email adddress!
                                                         </div>
                                                     @enderror
@@ -76,10 +76,10 @@
 
                                                 <div class="col-12">
                                                     <label for="yourPassword" class="form-label">Password</label>
-                                                    <input type="password" name="password"
-                                                        class="form-control @error('password') is-invalid @enderror"
-                                                        id="yourPassword" required value="{{ old('password') }}">
-                                                    @error('password')
+                                                    <input type="password" name="password1"
+                                                        class="form-control @error('password1') is-invalid @enderror"
+                                                        id="yourPassword" required value="{{ old('password1') }}">
+                                                    @error('password1')
                                                         <div class="invalid-feedback">Please enter your password!</div>
                                                     @enderror
                                                 </div>
@@ -87,14 +87,14 @@
                                                 <div class="col-12">
                                                     <div class="form-check">
                                                         <input
-                                                            class="form-check-input @error('terms') is-invalid @enderror"
-                                                            name="terms" type="checkbox" value="1" id="acceptTerms"
-                                                            required value="{{ old('terms') }}">
+                                                            class="form-check-input @error('terms1') is-invalid @enderror"
+                                                            name="terms1" type="checkbox" value="1" id="acceptTerms"
+                                                            required value="{{ old('terms1') }}">
                                                         <label class="form-check-label" for="acceptTerms">I agree and
                                                             accept
                                                             the
                                                             <a href="#">terms and conditions</a></label>
-                                                        @error('terms')
+                                                        @error('terms1')
                                                             <div class="invalid-feedback">You must agree before submitting.
                                                             </div>
                                                         @enderror
