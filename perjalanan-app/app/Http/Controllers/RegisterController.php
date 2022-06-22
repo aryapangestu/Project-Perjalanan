@@ -11,11 +11,7 @@ use Illuminate\Support\Facades\Hash;
 
 class RegisterController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    // Method yang digunakan untuk menampilkan halaman registrasi
     public function index()
     {
         return view('register.index',  [
@@ -23,14 +19,8 @@ class RegisterController extends Controller
         ]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-
-    public function store(Request $request)
+    // Method yang digunakan untuk menyimpan data ke table users
+    public function storePassenger(Request $request)
     {
 
         $validated = $request->validate([
@@ -40,31 +30,6 @@ class RegisterController extends Controller
             'terms' => 'required',
         ]);
         $validated['password'] = Hash::make($validated['password']);
-
-        User::create($validated);
-
-        return redirect('/login');
-    }
-
-    public function storePassenger(Request $request)
-    {
-
-        $validated = $request->validate([
-            'name1' => 'required|max:255',
-            'email1' => 'required|email|unique:users',
-            'password1' => 'required',
-            'terms1' => 'required',
-        ]);
-        $datVehicle['name'] = $validated['name1'];
-        unset($validated['name1']);
-
-        $datVehicle['email'] = $validated['email1'];
-        unset($validated['email1']);
-
-        $datVehicle['password'] = $validated['password1'];
-        unset($validated['password1']);
-
-        $validated['password'] = Hash::make($validated['password']);
         $validated['role'] = 1;
 
         $user = User::create($validated);
@@ -73,6 +38,7 @@ class RegisterController extends Controller
         return redirect('/login');
     }
 
+    // Method yang digunakan untuk menyimpan data ke table drivers
     public function storeDriver(Request $request)
     {
 

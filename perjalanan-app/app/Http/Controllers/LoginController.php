@@ -9,12 +9,7 @@ use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    // Method menuju ke view login index
+    // Method yang digunakan untuk menampilkan halaman login
     public function index()
     {
         return view('login.index',  [
@@ -22,7 +17,7 @@ class LoginController extends Controller
         ]);
     }
 
-    // Method untuk melakukan login atau melakukan Authenticating Users
+    // Method yang digunakan untuk melakukan login atau melakukan Authenticating Users
     public function authenticate(Request $request)
     {
         // Melakukan validasi email dan password
@@ -64,7 +59,7 @@ class LoginController extends Controller
     }
 
 
-    // Mengeluarkan user dari aplikasi
+    // Method yang digunakan untuk mengeluarkan pengguna dari aplikasi dengan memanggil _logout
     public function logout(Request $request)
     {
         // Ini akan menghapus informasi otentikasi dari sesi pengguna sehingga permintaan berikutnya tidak diautentikasi.
@@ -74,6 +69,7 @@ class LoginController extends Controller
         return redirect('/');
     }
 
+    // Method yang digunakan untuk mengeluarkan pengguna dari aplikasi
     private function _logout(Request $request)
     {
         // Ini akan menghapus informasi otentikasi dari sesi pengguna sehingga permintaan berikutnya tidak diautentikasi.

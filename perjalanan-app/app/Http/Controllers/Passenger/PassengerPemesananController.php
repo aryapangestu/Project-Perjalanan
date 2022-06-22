@@ -9,11 +9,7 @@ use Illuminate\Support\Facades\Auth;
 
 class PassengerPemesananController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    // Method yang digunakan untuk menampilkan halaman pemesanan penumpang
     public function index()
     {
         if (Ride::where('passenger_id', Auth::user()->id)->first() == null) {
@@ -28,22 +24,7 @@ class PassengerPemesananController extends Controller
         ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+    // Method yang digunakan untuk menyimpan posisi titik jemput dan tujuan serta jenis kendaraan ke dalam table ride
     public function store(Request $request)
     {
         $validated = $request->validate([
@@ -59,50 +40,5 @@ class PassengerPemesananController extends Controller
         Ride::create($validated);
 
         return redirect('/passenger/perjalanan')->with('alert', 'Pesanan berhasil ditambahkan, Silakan tunggu driver Anda');
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
     }
 }

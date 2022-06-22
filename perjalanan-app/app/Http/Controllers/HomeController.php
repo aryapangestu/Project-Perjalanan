@@ -10,11 +10,7 @@ use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    // Method yang digunakan untuk menampilkan halaman dashboard sesuai dengan role
     public function index()
     {
         if (Auth::user()->role == 0) {

@@ -19,8 +19,8 @@
                     <div class="card-body">
                         @if (session()->has('alert'))
                             <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                {{ session('alert') }} <button type="button" class="btn-close"
-                                    data-bs-dismiss="alert" aria-label="Close"></button>
+                                {{ session('alert') }} <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                    aria-label="Close"></button>
                             </div>
                         @endif
                         @if ($status == '1' || $status == '-1')
@@ -156,7 +156,7 @@
         mapboxgl.accessToken = 'pk.eyJ1IjoiYXJ5YXAyIiwiYSI6ImNsMXU1MmJ3NjJpemQzcXVrNnQ3cDFibmEifQ.WtmVOqIR6MWhE9HNjQpPkw';
         const map = new mapboxgl.Map({
             container: 'map',
-            style: 'mapbox://styles/mapbox/streets-v11',
+            style: 'mapbox://styles/mapbox/traffic-day-v2',
             center: [107.60340, -6.93487],
             zoom: 12
         });

@@ -10,11 +10,7 @@ use Illuminate\Support\Facades\Auth;
 
 class DriverPerjalananController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    // Method yang digunakan untuk menampilkan halaman perjalanan driver
     public function index()
     {
         return view('driver.dashboard.perjalanan', [
@@ -31,6 +27,7 @@ class DriverPerjalananController extends Controller
         ]);
     }
 
+    // Method yang digunakan untuk menampilkan view map pada perjalanan yang dipilih
     public function showView($id)
     {
         return view('driver.dashboard.viewPerjalanan', [
@@ -39,12 +36,7 @@ class DriverPerjalananController extends Controller
         ]);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    // Method yang digunakan untuk mengubah status Perjalanan berhasil diambil
     public function updateRideDriver($id)
     {
         $update = array('driver_id' => Auth::user()->id);
@@ -52,6 +44,7 @@ class DriverPerjalananController extends Controller
         return redirect('/driver/perjalanan')->with('alert', 'Perjalanan berhasil diambil');
     }
 
+    // Method yang digunakan untuk mengubah status Selamat Anda telah menyelesaikan perjalanan
     public function updateRideStatus($id)
     {
         $update = array('status' => 1);
