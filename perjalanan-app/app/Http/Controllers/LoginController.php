@@ -12,7 +12,7 @@ class LoginController extends Controller
     // Method yang digunakan untuk menampilkan halaman login
     public function index()
     {
-        return view('login.index',  [
+        return view('Login.index',  [
             "title" => "login"
         ]);
     }
