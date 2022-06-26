@@ -26,7 +26,7 @@ account test </br>
 2. Go the project directory:
 
     ```bash
-    cd perjalanan-app
+    cd Project-Perjalanan\perjalanan-app
     ```
 3. Install the project dependencies:
     ```bash
