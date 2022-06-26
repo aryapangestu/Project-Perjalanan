@@ -21,7 +21,7 @@ account test </br>
 1. Clone the github repo:
 
     ```bash
-    https://github.com/aryapangestu/Project-Perjalanan.git
+    git clone https://github.com/aryapangestu/Project-Perjalanan.git
     ```
 2. Go the project directory:
 
