@@ -6,7 +6,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
-class PassangerTest extends TestCase
+class PassengerTest extends TestCase
 {
     // migrate database
     use RefreshDatabase;
@@ -25,25 +25,25 @@ class PassangerTest extends TestCase
         ]);
     }
 
-    public function akses_dashboard_driver()
+    public function test_akses_dashboard_driver()
     {
         $response = $this->get('/passenger');
         $response->assertStatus(200);
     }
 
-    public function akses_pemesanan_passenger()
+    public function test_akses_pemesanan_passenger()
     {
         $response = $this->get('/passenger/pemesanan');
         $response->assertStatus(200);
     }
 
-    public function akses_perjalanan_passenger()
+    public function test_akses_perjalanan_passenger()
     {
         $response = $this->get('/passenger/perjalanan');
         $response->assertStatus(200);
     }
 
-    public function akses_riwayat_passenger()
+    public function test_akses_riwayat_passenger()
     {
         $response = $this->get('/passenger/history');
         $response->assertStatus(200);

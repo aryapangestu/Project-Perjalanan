@@ -25,19 +25,19 @@ class DriverTest extends TestCase
         ]);
     }
 
-    public function akses_dashboard_driver()
+    public function test_akses_dashboard_driver()
     {
-        $response = $this->get('/dashboard');
+        $response = $this->get('/driver');
         $response->assertStatus(200);
     }
 
-    public function akses_perjalanan_driver()
+    public function test_akses_perjalanan_driver()
     {
         $response = $this->get('/driver/perjalanan');
         $response->assertStatus(200);
     }
 
-    public function akses_riwayat_driver()
+    public function test_akses_riwayat_driver()
     {
         $response = $this->get('/driver/history');
         $response->assertStatus(200);
