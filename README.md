@@ -1,17 +1,32 @@
 # Project-Perjalanan
 Perjalanan adalah sebuah perangkat lunak yang membantu dalam hal transportasi yang berbasis aplikasi online. Perjalanan adalah perangkat lunak penyempurna sistem layanan transportasi yang telah ada.
 
+## Demo
+You can immediately try this Project-Perjalanan project:
+</br>https://perjalanan.herokuapp.com/
+
+account test </br>
+1. Admin
+</br>email: testadmin@example.com
+</br>password: password
+3. Passenger
+</br>email: testpassenger@example.com
+</br>password: password
+5. Driver
+</br email: testdriver@example.com
+</br>password: password
+
 ## Installation
 
 1. Clone the github repo:
 
     ```bash
-    https://github.com/aryapangestu/Project-Perjalanan.git
+    git clone https://github.com/aryapangestu/Project-Perjalanan.git
     ```
 2. Go the project directory:
 
     ```bash
-    cd perjalanan-app
+    cd Project-Perjalanan\perjalanan-app
     ```
 3. Install the project dependencies:
     ```bash
