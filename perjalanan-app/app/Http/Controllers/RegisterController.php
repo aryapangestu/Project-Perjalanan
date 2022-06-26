@@ -14,7 +14,7 @@ class RegisterController extends Controller
     // Method yang digunakan untuk menampilkan halaman registrasi
     public function index()
     {
-        return view('register.index',  [
+        return view('Register.index',  [
             "title" => "register"
         ]);
     }
