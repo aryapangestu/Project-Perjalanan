@@ -87,7 +87,7 @@
                                                 <div class="col-12">
                                                     <div class="form-check">
                                                         <input
-                                                            class="form-check-input @error('terms1') is-invalid @enderror"
+                                                            class="form-check-input @error('terms') is-invalid @enderror"
                                                             name="terms" type="checkbox" value="1"
                                                             id="acceptTerms" required value="{{ old('terms') }}">
                                                         <label class="form-check-label" for="acceptTerms">I agree and
