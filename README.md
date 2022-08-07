@@ -13,7 +13,7 @@ account test </br>
 </br>email: testpassenger@example.com
 </br>password: password
 5. Driver
-</br email: testdriver@example.com
+</br> email: testdriver@example.com
 </br>password: password
 
 ## Installation
